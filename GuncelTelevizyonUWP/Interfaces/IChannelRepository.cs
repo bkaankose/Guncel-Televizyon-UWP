@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GuncelTelevizyonUWP.Repositories
+namespace GuncelTelevizyonUWP.Interfaces
 {
-    class IChannelRepository
+    public interface IChannelRepository
     {
     }
 }
