@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Windows.Navigation;
+using GuncelTelevizyonUWP.Helpers;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainPageViewModel : BaseViewModel
     {
         #region Repositories
 
