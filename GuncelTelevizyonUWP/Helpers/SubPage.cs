@@ -49,9 +49,9 @@ namespace GuncelTelevizyonUWP.Helpers
         {
             Type type = GetPageTypeByName(PageName);
             if (type == null)
-                Debugger.Break(); // debug
+                Debugger.Break();
 
-            var control = Activator.CreateInstance(type) as SessionStateAwarePage;
+            var control = Activator.CreateInstance(type) as BasePage;
 
             (control.DataContext as BaseViewModel).OnNavigatedTo(new NavigatedToEventArgs() { NavigationMode = NavigationMode.New, Parameter = PageParameter }, null);
             this.Content = new Grid();
