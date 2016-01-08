@@ -34,9 +34,9 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
 
 
-        private ObservableCollection<HamburgerMenuItem> _channelCategoryItems;
+        private ObservableCollection<ChannelCategoryItem> _channelCategoryItems;
 
-        public ObservableCollection<HamburgerMenuItem> ChannelCategoryItems
+        public ObservableCollection<ChannelCategoryItem> ChannelCategoryItems
         {
             get { return _channelCategoryItems; }
             set { _channelCategoryItems = value; OnPropertyChanged("ChannelCategoryItems"); }
@@ -54,8 +54,9 @@ namespace GuncelTelevizyonUWP.ViewModels
             base.OnNavigatedTo(e, viewModelState);
             InitializeCommands();
 
-            ChannelCategoryItems = new ObservableCollection<HamburgerMenuItem>();
-            ChannelCategoryItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems = new ObservableCollection<ChannelCategoryItem>();
+
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
 
         }
         private void InitializeCommands()
