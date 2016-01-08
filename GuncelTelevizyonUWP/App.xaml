@@ -3,13 +3,6 @@
     xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:GuncelTelevizyonUWP"
-    xmlns:converters="using:GuncelTelevizyonUWP.Converters"
-    RequestedTheme="Light">
-
-    <helpers:BaseApplication.Resources>
-        <converters:AppThemeToRequestedThemeConverter x:Key="themeConverter" />
-    </helpers:BaseApplication.Resources>
-    
+    xmlns:local="using:GuncelTelevizyonUWP">
 
 </helpers:BaseApplication>
