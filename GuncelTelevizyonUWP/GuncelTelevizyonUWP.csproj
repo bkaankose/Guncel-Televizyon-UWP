@@ -104,6 +104,7 @@
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Models\AppTheme.cs" />
     <Compile Include="Models\Channel.cs" />
+    <Compile Include="Models\ChannelCategory.cs" />
     <Compile Include="ViewModels\ChannelBrowserPageViewModel.cs" />
     <Compile Include="Models\ChannelCategoryItem.cs" />
     <Compile Include="Models\ChannelModelView.cs" />
