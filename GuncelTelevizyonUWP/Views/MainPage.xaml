@@ -1,9 +1,8 @@
-﻿<prism:SessionStateAwarePage
+﻿<helpers:BasePage
     prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:prism="using:Prism.Windows.Mvvm"
     x:Class="GuncelTelevizyonUWP.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    RequestedTheme="{Binding CurrentSettings.Theme,Converter={StaticResource themeConverter},FallbackValue='Dark'}"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
     xmlns:local="using:GuncelTelevizyonUWP.Views"
@@ -52,4 +51,4 @@
     </SplitView>
     
     
-</prism:SessionStateAwarePage>
+</helpers:BasePage>
