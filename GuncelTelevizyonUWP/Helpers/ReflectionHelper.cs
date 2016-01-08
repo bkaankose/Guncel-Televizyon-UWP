@@ -105,7 +105,7 @@ namespace GuncelTelevizyonUWP.Helpers
             if (typeNameCache.ContainsKey(type)) return typeNameCache[type];
             Assembly[] assemblies;
 
-            assemblies = GetAssemblies().Where(i => i.FullName.StartsWith("GuncelTelevizyonUWP.")).ToArray();
+            assemblies = GetAssemblies().Where(i => i.FullName.StartsWith("GuncelTelevizyonUWP")).ToArray();
 
             foreach (var a in assemblies)
             {
