@@ -96,9 +96,7 @@
                     <Grid>
                         <Button Content="" Command="{Binding AnimatePaneCommand}" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" FontSize="22" Width="50" Style="{StaticResource OpenCloseButtonTemplate}" />
                     </Grid>
-
                     <!-- Channel Categories -->
-
                     <ListView Margin="0,10" Grid.Row="1" ItemsSource="{Binding ChannelCategoryItems}">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -118,14 +116,27 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+
+                    <!-- Bottom Panel -->
+                    <Grid Grid.Row="2" Margin="0,0,0,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Button HorizontalContentAlignment="Left" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" FontSize="22" Style="{StaticResource OpenCloseButtonTemplate}" HorizontalAlignment="Stretch" Command="{Binding NavigateToPageCommand}" CommandParameter="Settings">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="60" Text="" FontFamily="Segoe MDL2 Assets" FontSize="22" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" VerticalAlignment="Center" />
+                                <TextBlock Grid.Column="1" Text="Ayarlar" FontFamily="Segoe UI Light" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="17.333" />
+                            </StackPanel>
+                        </Button>
+                    </Grid>
                 </Grid>
             </Grid>
         </SplitView.Pane>
 
         <SplitView.Content>
-            <helpers:SubPage PageName="ChannelBrowser" />
+            <helpers:SubPage x:Name="subView" PageParameter="{Binding SubPageParameter}" PageName="{Binding SubPageName}" />
         </SplitView.Content>
     </SplitView>
-
-
 </helpers:BasePage>
