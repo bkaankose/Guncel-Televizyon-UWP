@@ -56,19 +56,19 @@ namespace GuncelTelevizyonUWP.ViewModels
             InitializeCommands();
 
             ChannelCategoryItems = new ObservableCollection<ChannelCategoryItem>();
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
         }
         private void InitializeCommands()
         {
