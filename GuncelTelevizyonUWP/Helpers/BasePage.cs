@@ -4,6 +4,7 @@ using GuncelTelevizyonUWP.Services;
 using Prism.Windows.Mvvm;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,9 @@ namespace GuncelTelevizyonUWP.Helpers
         private Settings _mainSettings;
         public BasePage()
         {
-            Task.Run(async () =>
-            {
-                await InitializeBasePage();
-            });
+            InitializeBasePage();
         }
+
         private async Task InitializeBasePage()
         {
             var settingsService = ApplicationContext.Resolve<SettingsService>();
