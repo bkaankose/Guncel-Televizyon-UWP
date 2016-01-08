@@ -47,7 +47,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="{Binding Icon}" FontFamily="Segoe MDL2 Assets" FontSize="21.333" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontFamily="Segoe UI" Margin="8,0,0,0" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontFamily="Segoe UI" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
