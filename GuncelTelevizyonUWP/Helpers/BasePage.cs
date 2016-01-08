@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Navigation;
 
 namespace GuncelTelevizyonUWP.Helpers
 {
@@ -16,7 +17,13 @@ namespace GuncelTelevizyonUWP.Helpers
         private Settings _mainSettings;
         public BasePage()
         {
-            InitializeBasePage();
+            
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await InitializeBasePage();
         }
 
         private async Task InitializeBasePage()
