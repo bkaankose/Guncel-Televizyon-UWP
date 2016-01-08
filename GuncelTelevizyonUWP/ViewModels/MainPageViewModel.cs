@@ -22,6 +22,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         #region Commands
         public DelegateCommand AnimatePaneCommand { get; set; }
         public DelegateCommand PaneClosingCommand { get; set; }
+        public DelegateCommand<object> NavigateToPageCommand { get; set; }
 
         #endregion
         #region Properties
@@ -32,6 +33,22 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             get { return _isPaneOpen; }
             set { _isPaneOpen = value; OnPropertyChanged("IsPaneOpen"); }
+        }
+
+        private string _subPageName = "ChannelBrowser";
+
+        public string SubPageName
+        {
+            get { return _subPageName; }
+            set { _subPageName = value; OnPropertyChanged("SubPageName"); }
+        }
+
+        private object _subPageParameter;
+
+        public object SubPageParameter
+        {
+            get { return _subPageParameter; }
+            set { _subPageParameter = value; OnPropertyChanged("SubPageParameter"); }
         }
 
 
@@ -74,6 +91,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             AnimatePaneCommand = new DelegateCommand(AnimatePane);
             PaneClosingCommand = new DelegateCommand(PaneClosing);
+            NavigateToPageCommand = new DelegateCommand<object>(NavigateToPage);
         }
 
         private void PaneClosing()
@@ -83,6 +101,17 @@ namespace GuncelTelevizyonUWP.ViewModels
         private void AnimatePane()
         {
             IsPaneOpen = !IsPaneOpen;
+        }
+        private void NavigateToPage(object o)
+        {
+            ChangeSubPage("Settings","asd");
+        }
+        private void ChangeSubPage(string pageName,object pageParameter)
+        {
+            SubPageParameter = pageParameter;
+            SubPageName = pageName;
+            OnPropertyChanged("SubPageChanged");
+            IsPaneOpen = false;
         }
     }
 }

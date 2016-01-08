@@ -42,12 +42,16 @@ namespace GuncelTelevizyonUWP.Helpers
         public SubPage()
         {
             this.Loaded += SubPage_Loaded;
-            
         }
 
         private void SubPage_Loaded(object sender, RoutedEventArgs e)
         {
+            SetContent();
+        }
+        public void SetContent()
+        {
             Type type = GetPageTypeByName(PageName);
+
             if (type == null)
                 Debugger.Break();
 
@@ -58,7 +62,6 @@ namespace GuncelTelevizyonUWP.Helpers
             (this.Content as Grid).Children.Clear();
             (this.Content as Grid).Children.Add(control);
         }
-
         public virtual Type GetPageTypeByName(string pageToken)
         {
             var viewType = ReflectionHelper.GetType(string.Format("GuncelTelevizyonUWP.Views.{0}Page", pageToken));
