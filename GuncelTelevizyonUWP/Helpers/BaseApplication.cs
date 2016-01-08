@@ -1,4 +1,5 @@
-﻿using GuncelTelevizyonUWP.Interfaces;
+﻿using GuncelTelevizyonUWP.Context;
+using GuncelTelevizyonUWP.Interfaces;
 using GuncelTelevizyonUWP.Repositories;
 using GuncelTelevizyonUWP.Services;
 using Microsoft.Practices.Unity;
@@ -16,15 +17,15 @@ namespace GuncelTelevizyonUWP.Helpers
 {
     public class BaseApplication : PrismApplication
     {
-        public T Resolve<T>() => _container.Resolve<T>();
+        public T Resolve<T>() => ApplicationContext.Container.Resolve<T>();
         private Assembly[] cachedAssemblies = null;
         private Dictionary<string, Type> cachedViewModels = null;
-        private IUnityContainer _container { get; }
         public BaseApplication()
         {
-            _container = new UnityContainer();
+            
             var settingsService = Resolve<SettingsService>();
             var mainSettings = settingsService.GetSettingsAsync();
+
             if (mainSettings.Result.Theme == Models.AppTheme.Dark)
                 base.RequestedTheme = Windows.UI.Xaml.ApplicationTheme.Dark;
             else
@@ -41,17 +42,15 @@ namespace GuncelTelevizyonUWP.Helpers
         }
         private object ViewModelFactoy(Type modelType)
         {
-            return _container.Resolve(modelType);
+            return ApplicationContext.Container.Resolve(modelType);
         }
         private async Task RegisterRepositories()
         {
             ViewModelLocationProvider.SetDefaultViewModelFactory(ViewModelFactoy);
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(PinpointViewModel);
 
-            _container.RegisterInstance<ISettingsService>(Resolve<SettingsService>());
-            _container.RegisterInstance<ISettingsRepository>(Resolve<SettingsRepository>());
-            //var a = Resolve<SettingsRepository>();
-
+            ApplicationContext.Container.RegisterInstance<ISettingsService>(Resolve<SettingsService>());
+            ApplicationContext.Container.RegisterInstance<ISettingsRepository>(Resolve<SettingsRepository>());
         }
         private Type PinpointViewModel(Type viewType)
         {
