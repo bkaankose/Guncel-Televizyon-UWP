@@ -7,14 +7,40 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Windows.Navigation;
 using GuncelTelevizyonUWP.Helpers;
+using System.Collections.ObjectModel;
+using GuncelTelevizyonUWP.Models;
+using Prism.Commands;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         #region Repositories
-
         private ISettingsRepository _settingsRepository;
+        #endregion
+
+        #region Commands
+        public DelegateCommand AnimatePaneCommand { get; set; }
+
+        #endregion
+        #region Properties
+
+        private bool _isPaneOpen;
+
+        public bool IsPaneOpen
+        {
+            get { return _isPaneOpen; }
+            set { _isPaneOpen = value; OnPropertyChanged("IsPaneOpen"); }
+        }
+
+
+        private ObservableCollection<HamburgerMenuItem> _channelCategoryItems;
+
+        public ObservableCollection<HamburgerMenuItem> ChannelCategoryItems
+        {
+            get { return _channelCategoryItems; }
+            set { _channelCategoryItems = value; OnPropertyChanged("ChannelCategoryItems"); }
+        }
 
         #endregion
 
@@ -26,7 +52,20 @@ namespace GuncelTelevizyonUWP.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            var a = await _settingsRepository.GetSettingsAsync();
+            InitializeCommands();
+
+            ChannelCategoryItems = new ObservableCollection<HamburgerMenuItem>();
+            ChannelCategoryItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Tüm Kanallar" });
+
+        }
+        private void InitializeCommands()
+        {
+            AnimatePaneCommand = new DelegateCommand(AnimatePane);
+        }
+
+        private void AnimatePane()
+        {
+            IsPaneOpen = !IsPaneOpen;
         }
     }
 }
