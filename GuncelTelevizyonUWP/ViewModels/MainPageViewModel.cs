@@ -56,9 +56,19 @@ namespace GuncelTelevizyonUWP.ViewModels
             InitializeCommands();
 
             ChannelCategoryItems = new ObservableCollection<ChannelCategoryItem>();
-
             ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
-
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
+            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar" });
         }
         private void InitializeCommands()
         {
