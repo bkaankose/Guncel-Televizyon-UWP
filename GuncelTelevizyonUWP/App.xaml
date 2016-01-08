@@ -1,15 +1,15 @@
-﻿<prismWindows:PrismApplication
+﻿<helpers:BaseApplication
     x:Class="GuncelTelevizyonUWP.App"
-    xmlns:prismWindows="using:Prism.Windows"
+    xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:GuncelTelevizyonUWP"
     xmlns:converters="using:GuncelTelevizyonUWP.Converters"
-    RequestedTheme="Dark">
+    RequestedTheme="Light">
 
-    <prismWindows:PrismApplication.Resources>
+    <helpers:BaseApplication.Resources>
         <converters:AppThemeToRequestedThemeConverter x:Key="themeConverter" />
-    </prismWindows:PrismApplication.Resources>
+    </helpers:BaseApplication.Resources>
     
 
-</prismWindows:PrismApplication>
+</helpers:BaseApplication>
