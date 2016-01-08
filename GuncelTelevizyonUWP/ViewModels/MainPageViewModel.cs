@@ -21,6 +21,7 @@ namespace GuncelTelevizyonUWP.ViewModels
 
         #region Commands
         public DelegateCommand AnimatePaneCommand { get; set; }
+        public DelegateCommand PaneClosingCommand { get; set; }
 
         #endregion
         #region Properties
@@ -62,8 +63,13 @@ namespace GuncelTelevizyonUWP.ViewModels
         private void InitializeCommands()
         {
             AnimatePaneCommand = new DelegateCommand(AnimatePane);
+            PaneClosingCommand = new DelegateCommand(PaneClosing);
         }
 
+        private void PaneClosing()
+        {
+            IsPaneOpen = false;
+        }
         private void AnimatePane()
         {
             IsPaneOpen = !IsPaneOpen;

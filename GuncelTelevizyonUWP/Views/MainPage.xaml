@@ -3,15 +3,21 @@
     xmlns:prism="using:Prism.Windows.Mvvm"
     xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
     x:Class="GuncelTelevizyonUWP.Views.MainPage"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    
     xmlns:local="using:GuncelTelevizyonUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsPaneOpen}" CompactPaneLength="50">
+        <interactivity:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="PaneClosed">
+                <core:InvokeCommandAction Command="{Binding PaneClosingCommand}"/>
+            </core:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
         <SplitView.Pane>
             <Grid>
                 <Grid.RowDefinitions>
@@ -24,10 +30,14 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
+                    
                     <!-- Open Menu -->
                     <Grid>
                         <Button Content="" Command="{Binding AnimatePaneCommand}" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" Width="50" />
                     </Grid>
+                    
+                    <!-- Channel Categories -->
+                    
                     <ListView Margin="0,10" Grid.Row="1" ItemsSource="{Binding ChannelCategoryItems}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
