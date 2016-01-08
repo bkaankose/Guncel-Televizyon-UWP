@@ -3,13 +3,53 @@
     xmlns:prism="using:Prism.Windows.Mvvm"
     x:Class="GuncelTelevizyonUWP.Views.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    RequestedTheme="{Binding CurrentSettings.Theme,Converter={StaticResource themeConverter},FallbackValue='Dark'}"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
     xmlns:local="using:GuncelTelevizyonUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <SplitView DisplayMode="CompactOverlay" IsPaneOpen="{Binding IsPaneOpen}" CompactPaneLength="50">
+        <SplitView.Pane>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <!-- Open Menu -->
+                    <Grid>
+                        <Button Content="" Command="{Binding AnimatePaneCommand}" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" Width="50" />
+                    </Grid>
+                    <ListView Margin="0,10" Grid.Row="1" ItemsSource="{Binding ChannelCategoryItems}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Icon}" FontFamily="Segoe MDL2 Assets" FontSize="21.333" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontFamily="Segoe UI" Margin="8,0,0,0" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </SplitView.Pane>
 
-    </Grid>
+        <SplitView.Content>
+            <helpers:SubPage PageName="Test" PageParameter="selam" />
+        </SplitView.Content>
+    </SplitView>
+    
+    
 </prism:SessionStateAwarePage>
