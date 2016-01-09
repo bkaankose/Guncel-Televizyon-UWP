@@ -10,6 +10,7 @@ namespace GuncelTelevizyonUWP.Models
     {
         Seperator,
         ChannelCategory,
-        Settings
+        Settings,
+        CurrentStreams
     }
 }
