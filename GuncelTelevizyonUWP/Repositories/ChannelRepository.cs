@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GuncelTelevizyonUWP.Models;
+using System.Collections.ObjectModel;
 
 namespace GuncelTelevizyonUWP.Repositories
 {
@@ -13,6 +15,11 @@ namespace GuncelTelevizyonUWP.Repositories
         public ChannelRepository(IChannelService channelService)
         {
             _channelService = channelService;
+        }
+
+        public async Task<ObservableCollection<DummyChannelCurrentStreamInformation>> GetCurrentChannelInformation()
+        {
+            return await _channelService.GetCurrentChannelInformation();
         }
     }
 }
