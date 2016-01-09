@@ -18,7 +18,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Ayarlar" Style="{StaticResource HeaderTextBlockStyle}" />
+            <!--<TextBlock Text="Ayarlar" Style="{StaticResource HeaderTextBlockStyle}" />-->
             <StackPanel Grid.Row="1" Margin="0,15">
                 <TextBlock Text="Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
                 <StackPanel Orientation="Horizontal">
