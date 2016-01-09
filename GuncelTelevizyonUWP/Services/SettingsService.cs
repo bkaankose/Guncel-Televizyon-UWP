@@ -56,6 +56,7 @@ namespace GuncelTelevizyonUWP.Services
                 await writeStream.FlushAsync();
                 inputStream.Dispose();
                 writer.Dispose();
+                ConfigurationContext.MainSettings = _settingsModel;
             }
             catch
             {

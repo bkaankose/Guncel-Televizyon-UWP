@@ -14,29 +14,14 @@ namespace GuncelTelevizyonUWP.Helpers
 {
     public class BasePage : SessionStateAwarePage
     {
-        private Settings _mainSettings;
-        private SettingsService settingsService = ApplicationContext.Resolve<SettingsService>();
         public BasePage()
         {
-            
+            ConfigurationContext.SettingsChanged += (c, r) => { InitializeSettings(c as Settings); };
         }
-
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        private void InitializeSettings(Settings model)
         {
-            base.OnNavigatedTo(e);
-            await InitializeBasePage();
-            //this.RequestedTheme = Windows.UI.Xaml.ElementTheme.Light;
-        }
-
-        public async Task ApplySettings()
-        {
-            await InitializeBasePage();
-        }
-
-        private async Task InitializeBasePage()
-        {
-            _mainSettings = await settingsService.GetSettingsAsync();
-            this.RequestedTheme = _mainSettings.Theme == AppTheme.Light ? Windows.UI.Xaml.ElementTheme.Light : Windows.UI.Xaml.ElementTheme.Dark;
+            // Theme
+            base.RequestedTheme = model.Theme == AppTheme.Dark ? Windows.UI.Xaml.ElementTheme.Dark : Windows.UI.Xaml.ElementTheme.Light;
         }
     }
 }

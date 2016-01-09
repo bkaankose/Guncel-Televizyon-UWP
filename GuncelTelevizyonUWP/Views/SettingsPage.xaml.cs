@@ -19,20 +19,9 @@ namespace GuncelTelevizyonUWP.Views
 {
     public sealed partial class SettingsPage : BasePage
     {
-        private SettingsPageViewModel PageVM;
         public SettingsPage()
         {
             this.InitializeComponent();
-            PageVM = this.DataContext as SettingsPageViewModel;
-            PageVM.PropertyChanged += PageVMPropertyChanged;
-        }
-
-        private async void PageVMPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == "ApplySettings")
-            {
-                await base.ApplySettings();
-            }
         }
     }
 }

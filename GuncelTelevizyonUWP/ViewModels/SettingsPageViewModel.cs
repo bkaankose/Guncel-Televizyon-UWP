@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Windows.Navigation;
+using GuncelTelevizyonUWP.Context;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
@@ -29,21 +30,18 @@ namespace GuncelTelevizyonUWP.ViewModels
             {
                 CurrentSettings.Theme = IsThemeDark ? Models.AppTheme.Dark : Models.AppTheme.Light;
                 await base.settingsService.SaveSettingsAsync(CurrentSettings);
-                OnPropertyChanged("ApplySettings");
             }
         }
 
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            await InitializeCurrentSettings();
-
+            InitializeCurrentSettings();
             this.PropertyChanged += VMPropertyChanged;
         }
-        private async Task InitializeCurrentSettings()
+        private void InitializeCurrentSettings()
         {
             IsThemeDark = CurrentSettings.Theme == Models.AppTheme.Dark ? true : false;
-
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using GuncelTelevizyonUWP.Context;
 using GuncelTelevizyonUWP.Interfaces;
+using GuncelTelevizyonUWP.Models;
 using GuncelTelevizyonUWP.Repositories;
 using GuncelTelevizyonUWP.Services;
 using Microsoft.Practices.Unity;
@@ -22,21 +23,11 @@ namespace GuncelTelevizyonUWP.Helpers
         private Dictionary<string, Type> cachedViewModels = null;
         public BaseApplication()
         {
-            
-            var settingsService = Resolve<SettingsService>();
-            var mainSettings = settingsService.GetSettingsAsync();
 
-            if (mainSettings.Result.Theme == Models.AppTheme.Dark)
-                base.RequestedTheme = Windows.UI.Xaml.ApplicationTheme.Dark;
-            else
-                base.RequestedTheme = Windows.UI.Xaml.ApplicationTheme.Light;
         }
-
+        
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
-            // Override requested theme
-            
-
             await RegisterRepositories();
             NavigationService.Navigate("Main", null);
         }

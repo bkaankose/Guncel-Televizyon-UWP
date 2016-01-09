@@ -9,6 +9,20 @@ namespace GuncelTelevizyonUWP.Context
 {
     public static class ConfigurationContext
     {
-        public static Settings MainSettings;
+        private static Settings _mainSettings;
+        public static Settings MainSettings
+        {
+            get
+            {
+                return _mainSettings;
+            }
+            set
+            {
+                _mainSettings = value;
+                if(SettingsChanged != null)
+                    SettingsChanged.Invoke(_mainSettings, null);
+            }
+        }
+        public static event EventHandler SettingsChanged;
     }
 }
