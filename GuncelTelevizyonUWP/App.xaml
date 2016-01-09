@@ -3,6 +3,11 @@
     xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="using:GuncelTelevizyonUWP.Converters"
     xmlns:local="using:GuncelTelevizyonUWP">
 
+    <helpers:BaseApplication.Resources>
+        <converters:BooleanToReverseConverter x:Key="booleanToReverse" />
+    </helpers:BaseApplication.Resources>
+    
 </helpers:BaseApplication>
