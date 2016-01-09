@@ -19,7 +19,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <!--<TextBlock Text="Ayarlar" Style="{StaticResource HeaderTextBlockStyle}" />-->
-            <StackPanel Grid.Row="1" Margin="0,15">
+            <StackPanel Grid.Row="1">
                 <TextBlock Text="Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
                 <StackPanel Orientation="Horizontal">
                     <RadioButton Content="Açık" IsChecked="{Binding CurrentSettings.Theme,Mode=TwoWay,Converter={StaticResource lightThemeToBoolean}}" />
