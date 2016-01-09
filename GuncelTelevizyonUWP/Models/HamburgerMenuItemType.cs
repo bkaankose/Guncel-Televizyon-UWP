@@ -8,6 +8,7 @@ namespace GuncelTelevizyonUWP.Models
 {
     public enum HamburgerMenuItemType
     {
+        Seperator,
         ChannelCategory,
         Settings
     }
