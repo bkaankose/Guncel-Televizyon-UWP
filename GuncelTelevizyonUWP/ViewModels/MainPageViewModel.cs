@@ -27,6 +27,15 @@ namespace GuncelTelevizyonUWP.ViewModels
         #endregion
         #region Properties
 
+        private bool _isCurrentSubPageSettings;
+
+        public bool IsCurrentSubPageSettings
+        {
+            get { return _isCurrentSubPageSettings; }
+            set { _isCurrentSubPageSettings = value; OnPropertyChanged("IsCurrentSubPageSettings"); }
+        }
+
+
         private bool _isPaneOpen;
 
         public bool IsPaneOpen
@@ -52,22 +61,29 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
 
 
-        private ObservableCollection<ChannelCategoryItem> _channelCategoryItems;
+        private ObservableCollection<HamburgerMenuItem> _hamburgerMenuItems;
 
-        public ObservableCollection<ChannelCategoryItem> ChannelCategoryItems
+        public ObservableCollection<HamburgerMenuItem> HamburgerMenuItems
         {
-            get { return _channelCategoryItems; }
-            set { _channelCategoryItems = value; OnPropertyChanged("ChannelCategoryItems"); }
+            get { return _hamburgerMenuItems; }
+            set { _hamburgerMenuItems = value; OnPropertyChanged("HamburgerMenuItems"); }
         }
 
-        private ChannelCategoryItem _selectedChannelCategoryItem;
+        private HamburgerMenuItem  _selectedHamburgerMenuItem;
 
-        public ChannelCategoryItem SelectedChannelCategoryItem
+        public HamburgerMenuItem SelectedHamburgerMenuItem
         {
-            get { return _selectedChannelCategoryItem; }
-            set { _selectedChannelCategoryItem = value; OnPropertyChanged("SelectedChannelCategoryItem"); }
+            get { return _selectedHamburgerMenuItem; }
+            set { _selectedHamburgerMenuItem = value; OnPropertyChanged("SelectedHamburgerMenuItem"); }
         }
 
+        private ObservableCollection<HamburgerMenuItem> _bottomHamburgerMenuItems;
+
+        public ObservableCollection<HamburgerMenuItem> BottomHamburgerMenuItems
+        {
+            get { return _bottomHamburgerMenuItems; }
+            set { _bottomHamburgerMenuItems = value; OnPropertyChanged("BottomHamburgerMenuItems"); }
+        }
 
         #endregion
 
@@ -81,29 +97,37 @@ namespace GuncelTelevizyonUWP.ViewModels
             base.OnNavigatedTo(e, viewModelState);
             InitializeCommands();
 
-            ChannelCategoryItems = new ObservableCollection<ChannelCategoryItem>();
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
-            ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+            HamburgerMenuItems = new ObservableCollection<HamburgerMenuItem>();
+            BottomHamburgerMenuItems = new ObservableCollection<HamburgerMenuItem>();
+
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory , Object = ChannelCategory.All });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+
+            BottomHamburgerMenuItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Ayarlar", Type = HamburgerMenuItemType.Settings });
 
             this.PropertyChanged += MainVMPropertyChanged;
         }
 
+
+
         private void MainVMPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "SelectedChannelCategoryItem")
+            if (e.PropertyName == "SelectedHamburgerMenuItem" && SelectedHamburgerMenuItem != null)
             {
-                ChangeSubPage("ChannelBrowser", SelectedChannelCategoryItem);
+                switch(SelectedHamburgerMenuItem.Type)
+                {
+                    case HamburgerMenuItemType.Settings:
+                        ChangeSubPage("Settings", null);
+                        break;
+                    case HamburgerMenuItemType.ChannelCategory:
+                        ChangeSubPage("ChannelBrowser", SelectedHamburgerMenuItem.Object);
+                        break;
+                }
             }
         }
 
@@ -124,7 +148,11 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
         private void NavigateToPage(object o)
         {
-            ChangeSubPage(o.ToString(), null);
+            //SelectedChannelCategoryItem = null;
+            //if (o.ToString() == "Settings")
+            //    IsCurrentSubPageSettings = true;
+
+            //ChangeSubPage(o.ToString(), null);
         }
         private void ChangeSubPage(string pageName,object pageParameter)
         {

@@ -12,6 +12,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <helpers:BasePage.Resources>
+        <DataTemplate x:Key="HamburgerMenuItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Icon}" FontFamily="Segoe MDL2 Assets" FontSize="22" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+                <TextBlock Grid.Column="1" Text="{Binding Title}" FontFamily="Segoe UI" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
+            </Grid>
+        </DataTemplate>
         <Style x:Key="OpenCloseButtonTemplate" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
@@ -97,39 +107,23 @@
                         <Button Content="" Command="{Binding AnimatePaneCommand}" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" FontSize="22" Width="50" Style="{StaticResource OpenCloseButtonTemplate}" />
                     </Grid>
                     <!-- Channel Categories -->
-                    <ListView Margin="0,10" Grid.Row="1" ItemsSource="{Binding ChannelCategoryItems}" SelectedItem="{Binding SelectedChannelCategoryItem,Mode=TwoWay}">
+                    <ListView Margin="0,10" Grid.Row="1" ItemsSource="{Binding HamburgerMenuItems}" SelectedValue="{Binding SelectedHamburgerMenuItem,Mode=TwoWay}" ItemTemplate="{StaticResource HamburgerMenuItemTemplate}">
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="SelectionChanged">
                                 <core:InvokeCommandAction Command="{Binding PaneClosingCommand}"/>
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="60" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Icon}" FontFamily="Segoe MDL2 Assets" FontSize="22" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
-                                    <TextBlock Grid.Column="1" Text="{Binding Title}" FontFamily="Segoe UI" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
                     </ListView>
 
                     <!-- Bottom Panel -->
                     <Grid Grid.Row="2" Margin="0,0,0,10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Button HorizontalContentAlignment="Left" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" FontSize="22" Style="{StaticResource OpenCloseButtonTemplate}" HorizontalAlignment="Stretch" Command="{Binding NavigateToPageCommand}" CommandParameter="Settings">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="60" Text="" FontFamily="Segoe MDL2 Assets" FontSize="22" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" VerticalAlignment="Center" />
-                                <TextBlock Grid.Column="1" Text="Ayarlar" FontFamily="Segoe UI Light" VerticalAlignment="Center" Foreground="{ThemeResource AppBarItemForegroundThemeBrush}" FontSize="17.333" />
-                            </StackPanel>
-                        </Button>
+                        <ListView ItemsSource="{Binding BottomHamburgerMenuItems}" SelectedValue="{Binding SelectedHamburgerMenuItem,Mode=TwoWay}" ItemTemplate="{StaticResource HamburgerMenuItemTemplate}">
+                            <interactivity:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="SelectionChanged">
+                                    <core:InvokeCommandAction Command="{Binding PaneClosingCommand}"/>
+                                </core:EventTriggerBehavior>
+                            </interactivity:Interaction.Behaviors>
+                        </ListView>
                     </Grid>
                 </Grid>
             </Grid>

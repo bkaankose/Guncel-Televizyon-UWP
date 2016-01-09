@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace GuncelTelevizyonUWP.Models
 {
-    public class ChannelCategoryItem
+    public class HamburgerMenuItem
     {
         public string Icon { get; set; }
         public string Title { get; set; }
-        public ChannelCategory Category { get; set; }
+        public HamburgerMenuItemType Type { get; set; }
+        public object Object { get; set; }
     }
 }
