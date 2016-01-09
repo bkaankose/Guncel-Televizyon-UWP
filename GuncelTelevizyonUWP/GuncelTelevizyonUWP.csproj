@@ -17,6 +17,10 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>GuncelTelevizyonUWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\Burak\Desktop\</AppxPackageDir>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -105,11 +109,14 @@
     <Compile Include="Helpers\BaseViewModel.cs" />
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\SubPage.cs" />
+    <Compile Include="Interfaces\IChannelService.cs" />
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Models\AppTheme.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\ChannelCategory.cs" />
     <Compile Include="Models\HamburgerMenuItemType.cs" />
+    <Compile Include="Selectors\HamburgerMenuItemSelector.cs" />
+    <Compile Include="Services\ChannelService.cs" />
     <Compile Include="ViewModels\ChannelBrowserPageViewModel.cs" />
     <Compile Include="Models\HamburgerMenuItem.cs" />
     <Compile Include="Models\ChannelModelView.cs" />
@@ -120,10 +127,14 @@
     <Compile Include="Interfaces\ISettingsRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="ViewModels\CurrentStreamsPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\ChannelBrowserPage.xaml.cs">
       <DependentUpon>ChannelBrowserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CurrentStreamsPage.xaml.cs">
+      <DependentUpon>CurrentStreamsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -156,6 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ChannelBrowserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CurrentStreamsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
