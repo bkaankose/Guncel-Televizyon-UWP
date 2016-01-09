@@ -29,15 +29,16 @@ namespace GuncelTelevizyonUWP.Helpers
             set { _isBusy = value; OnPropertyChanged("IsBusy"); }
         }
 
-        private ISettingsService _settingsService;
+        public ISettingsService settingsService;
         public BaseViewModel()
         {
-            _settingsService = new SettingsService();
+            settingsService = new SettingsService();
         }
+
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
-            CurrentSettings = await _settingsService.GetSettingsAsync();
             base.OnNavigatedTo(e, viewModelState);
+            CurrentSettings = await settingsService.GetSettingsAsync();
         }
 
     }

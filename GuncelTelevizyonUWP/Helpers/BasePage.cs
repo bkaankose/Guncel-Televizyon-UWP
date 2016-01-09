@@ -15,6 +15,7 @@ namespace GuncelTelevizyonUWP.Helpers
     public class BasePage : SessionStateAwarePage
     {
         private Settings _mainSettings;
+        private SettingsService settingsService = ApplicationContext.Resolve<SettingsService>();
         public BasePage()
         {
             
@@ -24,11 +25,16 @@ namespace GuncelTelevizyonUWP.Helpers
         {
             base.OnNavigatedTo(e);
             await InitializeBasePage();
+            //this.RequestedTheme = Windows.UI.Xaml.ElementTheme.Light;
+        }
+
+        public async Task ApplySettings()
+        {
+            await InitializeBasePage();
         }
 
         private async Task InitializeBasePage()
         {
-            var settingsService = ApplicationContext.Resolve<SettingsService>();
             _mainSettings = await settingsService.GetSettingsAsync();
             this.RequestedTheme = _mainSettings.Theme == AppTheme.Light ? Windows.UI.Xaml.ElementTheme.Light : Windows.UI.Xaml.ElementTheme.Dark;
         }
