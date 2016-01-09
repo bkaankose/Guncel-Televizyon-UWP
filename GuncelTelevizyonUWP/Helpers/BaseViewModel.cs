@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Windows.Navigation;
+using GuncelTelevizyonUWP.Context;
+using Windows.UI.Core;
 
 namespace GuncelTelevizyonUWP.Helpers
 {
@@ -30,9 +32,15 @@ namespace GuncelTelevizyonUWP.Helpers
         }
 
         public ISettingsService settingsService;
+        public INavigationService navigationService;
         public BaseViewModel()
         {
-            settingsService = new SettingsService();
+            navigationService = ApplicationContext.Resolve<INavigationService>();
+            settingsService = ApplicationContext.Resolve<ISettingsService>();
+            if (navigationService.CanGoBack())
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            else
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
