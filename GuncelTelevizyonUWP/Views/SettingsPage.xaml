@@ -16,13 +16,26 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Text="Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
-            <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <RadioButton Content="Açık" IsChecked="{Binding IsThemeDark,Mode=TwoWay,Converter={StaticResource booleanToReverse}}" />
-                <RadioButton Content="Koyu" IsChecked="{Binding IsThemeDark,Mode=TwoWay}" />
+            <TextBlock Text="Ayarlar" Style="{StaticResource HeaderTextBlockStyle}" />
+            <StackPanel Grid.Row="1" Margin="0,15">
+                <TextBlock Text="Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
+                <StackPanel Orientation="Horizontal">
+                    <RadioButton Content="Açık" IsChecked="{Binding CurrentSettings.Theme,Mode=TwoWay,Converter={StaticResource lightThemeToBoolean}}" />
+                    <RadioButton Content="Koyu" IsChecked="{Binding CurrentSettings.Theme,Mode=TwoWay,Converter={StaticResource darkThemeToBoolean}}" />
+                </StackPanel>
             </StackPanel>
+            <Grid Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+                <Button HorizontalAlignment="Right" Command="{Binding SaveSettingsCommand}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" />
+                            <TextBlock Text=" Kaydet" FontFamily="Segoe UI Light" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </helpers:BasePage>

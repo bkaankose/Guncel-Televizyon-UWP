@@ -6,42 +6,40 @@ using System.Text;
 using System.Threading.Tasks;
 using Prism.Windows.Navigation;
 using GuncelTelevizyonUWP.Context;
+using Prism.Commands;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
     public class SettingsPageViewModel : BaseViewModel
     {
-        private bool _isThemeDark;
+        #region Properties
 
-        public bool IsThemeDark
-        {
-            get { return _isThemeDark; }
-            set { _isThemeDark = value; OnPropertyChanged("IsThemeDark"); }
-        }
+
+        #endregion
+
+        #region Commands
+
+        public DelegateCommand SaveSettingsCommand { get; set; }
+
+        #endregion
 
         public SettingsPageViewModel()
         {
-            
+            InitializeCommands();
         }
 
-        private async void VMPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void SaveSettings()
         {
-            if(e.PropertyName == "IsThemeDark")
-            {
-                CurrentSettings.Theme = IsThemeDark ? Models.AppTheme.Dark : Models.AppTheme.Light;
-                await base.settingsService.SaveSettingsAsync(CurrentSettings);
-            }
+            await settingsService.SaveSettingsAsync(CurrentSettings);
         }
 
+        private void InitializeCommands()
+        {
+            SaveSettingsCommand = new DelegateCommand(SaveSettings);
+        }
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            InitializeCurrentSettings();
-            this.PropertyChanged += VMPropertyChanged;
-        }
-        private void InitializeCurrentSettings()
-        {
-            IsThemeDark = CurrentSettings.Theme == Models.AppTheme.Dark ? true : false;
         }
     }
 }

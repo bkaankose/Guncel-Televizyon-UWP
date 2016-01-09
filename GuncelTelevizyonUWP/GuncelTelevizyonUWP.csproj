@@ -98,6 +98,8 @@
     <Compile Include="Context\ApplicationContext.cs" />
     <Compile Include="Context\ConfigurationContext.cs" />
     <Compile Include="Converters\BooleanToReverseConverter.cs" />
+    <Compile Include="Converters\DarkAppThemeToBooleanConverter.cs" />
+    <Compile Include="Converters\LightThemeToBooleanConverter.cs" />
     <Compile Include="Helpers\BaseApplication.cs" />
     <Compile Include="Helpers\BasePage.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
@@ -107,8 +109,9 @@
     <Compile Include="Models\AppTheme.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\ChannelCategory.cs" />
+    <Compile Include="Models\HamburgerMenuItemType.cs" />
     <Compile Include="ViewModels\ChannelBrowserPageViewModel.cs" />
-    <Compile Include="Models\ChannelCategoryItem.cs" />
+    <Compile Include="Models\HamburgerMenuItem.cs" />
     <Compile Include="Models\ChannelModelView.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
