@@ -42,6 +42,8 @@ namespace GuncelTelevizyonUWP.Helpers
 
             ApplicationContext.Container.RegisterInstance<ISettingsService>(Resolve<SettingsService>());
             ApplicationContext.Container.RegisterInstance<ISettingsRepository>(Resolve<SettingsRepository>());
+            ApplicationContext.Container.RegisterInstance(NavigationService);
+            ApplicationContext.Container.RegisterInstance(SessionStateService);
         }
         private Type PinpointViewModel(Type viewType)
         {
