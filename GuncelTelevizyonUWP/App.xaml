@@ -8,6 +8,8 @@
 
     <helpers:BaseApplication.Resources>
         <converters:BooleanToReverseConverter x:Key="booleanToReverse" />
+        <converters:DarkAppThemeToBooleanConverter x:Key="darkThemeToBoolean" />
+        <converters:LightThemeToBooleanConverter x:Key="lightThemeToBoolean" />
     </helpers:BaseApplication.Resources>
     
 </helpers:BaseApplication>
