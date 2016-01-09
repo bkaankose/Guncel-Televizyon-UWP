@@ -22,7 +22,6 @@ namespace GuncelTelevizyonUWP.ViewModels
         #region Commands
         public DelegateCommand AnimatePaneCommand { get; set; }
         public DelegateCommand PaneClosingCommand { get; set; }
-        public DelegateCommand<object> NavigateToPageCommand { get; set; }
 
         #endregion
         #region Properties
@@ -108,7 +107,9 @@ namespace GuncelTelevizyonUWP.ViewModels
             HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
             HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
 
+            BottomHamburgerMenuItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Yayın Akışı", Type = HamburgerMenuItemType.CurrentStreams });
             BottomHamburgerMenuItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Ayarlar", Type = HamburgerMenuItemType.Settings });
+            
 
             this.PropertyChanged += MainVMPropertyChanged;
         }
@@ -127,6 +128,9 @@ namespace GuncelTelevizyonUWP.ViewModels
                     case HamburgerMenuItemType.ChannelCategory:
                         ChangeSubPage("ChannelBrowser", SelectedHamburgerMenuItem.Object);
                         break;
+                    case HamburgerMenuItemType.CurrentStreams:
+                        ChangeSubPage("CurrentStreams", null);
+                        break;
                 }
             }
         }
@@ -135,7 +139,6 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             AnimatePaneCommand = new DelegateCommand(AnimatePane);
             PaneClosingCommand = new DelegateCommand(PaneClosing);
-            NavigateToPageCommand = new DelegateCommand<object>(NavigateToPage);
         }
 
         private void PaneClosing()
@@ -145,14 +148,6 @@ namespace GuncelTelevizyonUWP.ViewModels
         private void AnimatePane()
         {
             IsPaneOpen = !IsPaneOpen;
-        }
-        private void NavigateToPage(object o)
-        {
-            //SelectedChannelCategoryItem = null;
-            //if (o.ToString() == "Settings")
-            //    IsCurrentSubPageSettings = true;
-
-            //ChangeSubPage(o.ToString(), null);
         }
         private void ChangeSubPage(string pageName,object pageParameter)
         {
