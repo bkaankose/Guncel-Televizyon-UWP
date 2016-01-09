@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.UI.Core;
 
 namespace GuncelTelevizyonUWP.Helpers
 {
@@ -21,9 +22,10 @@ namespace GuncelTelevizyonUWP.Helpers
         public T Resolve<T>() => ApplicationContext.Container.Resolve<T>();
         private Assembly[] cachedAssemblies = null;
         private Dictionary<string, Type> cachedViewModels = null;
+
         public BaseApplication()
         {
-
+            
         }
         
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
@@ -42,6 +44,10 @@ namespace GuncelTelevizyonUWP.Helpers
 
             ApplicationContext.Container.RegisterInstance<ISettingsService>(Resolve<SettingsService>());
             ApplicationContext.Container.RegisterInstance<ISettingsRepository>(Resolve<SettingsRepository>());
+
+            ApplicationContext.Container.RegisterInstance<IChannelService>(Resolve<ChannelService>());
+            ApplicationContext.Container.RegisterInstance<IChannelRepository>(Resolve<ChannelRepository>());
+
             ApplicationContext.Container.RegisterInstance(NavigationService);
             ApplicationContext.Container.RegisterInstance(SessionStateService);
         }

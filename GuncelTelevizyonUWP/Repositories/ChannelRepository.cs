@@ -9,10 +9,10 @@ namespace GuncelTelevizyonUWP.Repositories
 {
     public class ChannelRepository : IChannelRepository
     {
-        IChannelRepository _channelRepository;
-        public ChannelRepository(IChannelRepository channelRepository)
+        IChannelService _channelService;
+        public ChannelRepository(IChannelService channelService)
         {
-            _channelRepository = channelRepository;
+            _channelService = channelService;
         }
     }
 }
