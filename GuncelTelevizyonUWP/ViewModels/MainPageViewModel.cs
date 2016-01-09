@@ -60,6 +60,15 @@ namespace GuncelTelevizyonUWP.ViewModels
             set { _channelCategoryItems = value; OnPropertyChanged("ChannelCategoryItems"); }
         }
 
+        private ChannelCategoryItem _selectedChannelCategoryItem;
+
+        public ChannelCategoryItem SelectedChannelCategoryItem
+        {
+            get { return _selectedChannelCategoryItem; }
+            set { _selectedChannelCategoryItem = value; OnPropertyChanged("SelectedChannelCategoryItem"); }
+        }
+
+
         #endregion
 
         public MainPageViewModel(ISettingsRepository settingsRepository)
@@ -67,7 +76,7 @@ namespace GuncelTelevizyonUWP.ViewModels
             _settingsRepository = settingsRepository;
         }
 
-        public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
+        public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
             InitializeCommands();
@@ -86,7 +95,18 @@ namespace GuncelTelevizyonUWP.ViewModels
             ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
             ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
             ChannelCategoryItems.Add(new ChannelCategoryItem() { Icon = "", Title = "Tüm Kanallar", Category = ChannelCategory.All });
+
+            this.PropertyChanged += MainVMPropertyChanged;
         }
+
+        private void MainVMPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == "SelectedChannelCategoryItem")
+            {
+                ChangeSubPage("ChannelBrowser", SelectedChannelCategoryItem);
+            }
+        }
+
         private void InitializeCommands()
         {
             AnimatePaneCommand = new DelegateCommand(AnimatePane);
@@ -104,7 +124,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
         private void NavigateToPage(object o)
         {
-            ChangeSubPage("Settings","asd");
+            ChangeSubPage(o.ToString(), null);
         }
         private void ChangeSubPage(string pageName,object pageParameter)
         {
