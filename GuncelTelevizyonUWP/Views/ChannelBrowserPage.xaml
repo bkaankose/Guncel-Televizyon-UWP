@@ -10,7 +10,40 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <helpers:BasePage.Resources>
+        <DataTemplate x:Key="ChannelTemplate">
+            <Grid Margin="0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding ChannelImage}" Width="50" Height="50" Stretch="UniformToFill" />
+                <Grid Grid.Column="1" VerticalAlignment="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding CurrentStream}" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Name}"  Grid.Row="1" />
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </helpers:BasePage.Resources>
+    
+    <helpers:BasePage.BottomAppBar>
+        <CommandBar x:Name="commandBar" Visibility="{Binding SelectedChannel,Converter={StaticResource nullToVisibility}}" HorizontalContentAlignment="Center">
+            <CommandBar.Content>
+                <StackPanel HorizontalAlignment="Stretch">
+                    <AppBarButton Command="{Binding FavoriteChannelCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Favorile" Visibility="{Binding SelectedChannel.IsFavorited,Converter={StaticResource boolToVisibilityReverse}}" Icon="Favorite" HorizontalAlignment="Center" />
+                    <AppBarButton Command="{Binding UnFavoriteChannelCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Favoriden Çıkar" Visibility="{Binding SelectedChannel.IsFavorited,Converter={StaticResource boolToVisibility}}" Icon="UnFavorite" HorizontalAlignment="Center" />
+                </StackPanel>
+            </CommandBar.Content>
+        </CommandBar>
+    </helpers:BasePage.BottomAppBar>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        
+        <ListView ItemsSource="{Binding CurrentChannels}" SelectedItem="{Binding SelectedChannel,Mode=TwoWay}" ItemTemplate="{StaticResource ChannelTemplate}" />
+
+
     </Grid>
 </helpers:BasePage>
