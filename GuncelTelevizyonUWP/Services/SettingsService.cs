@@ -16,7 +16,7 @@ namespace GuncelTelevizyonUWP.Services
 {
     public class SettingsService : ISettingsService
     {
-        private StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+        private StorageFolder storageFolder = ConfigurationContext.LocalFolder; 
         public async Task<Settings> GetSettingsAsync()
         {
             if (ConfigurationContext.MainSettings != null)
@@ -32,7 +32,6 @@ namespace GuncelTelevizyonUWP.Services
 
             return ConfigurationContext.MainSettings;
         }
-
         public async Task<bool> SaveSettingsAsync(Settings _settingsModel)
         {
             StorageFile storageFile = null;
