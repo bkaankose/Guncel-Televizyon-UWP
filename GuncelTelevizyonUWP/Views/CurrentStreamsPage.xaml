@@ -5,13 +5,50 @@
     x:Class="GuncelTelevizyonUWP.Views.CurrentStreamsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ext="using:WinRTXamlToolkit.Controls.Extensions"
     xmlns:local="using:GuncelTelevizyonUWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <helpers:BasePage.BottomAppBar>
+        <CommandBar x:Name="commandBar" HorizontalContentAlignment="Stretch">
+            <CommandBar.Content>
+                <Grid HorizontalAlignment="Stretch">
+                    <AppBarButton Command="{Binding SetAlarmCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Alarm Kur" Icon="Clock" IsEnabled="{Binding SelectedCurrentStreams.Count,Converter={StaticResource countToBoolean}}" HorizontalAlignment="Center" />
+                </Grid>
+            </CommandBar.Content>
+        </CommandBar>
+    </helpers:BasePage.BottomAppBar>
 
-    </Grid>
+    <helpers:BasePage.Resources>
+        <DataTemplate x:Key="CurrentStreamTemplate">
+            <Grid>
+                <Grid Margin="5,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding ChannelImage}" Grid.Column="0" Stretch="UniformToFill" />
+                    <Grid Grid.Column="1" VerticalAlignment="Center" Margin="8,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding StreamName}" Foreground="{ThemeResource SystemAccentColor}" FontWeight="SemiBold" />
+                        <TextBlock Text="{Binding ChannelName}" Foreground="{ThemeResource SystemAccentColor}" Grid.Row="1" Margin="0,2" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </DataTemplate>
+    </helpers:BasePage.Resources>
     
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView ItemsSource="{Binding CurrentStreams}" 
+                  SelectionMode="Multiple" 
+                  ItemContainerStyle="{StaticResource HorizontalContentStretchStyle}" 
+                  ItemTemplate="{StaticResource CurrentStreamTemplate}" 
+                  ext:ListViewExtensions.BindableSelection="{Binding SelectedCurrentStreams,Mode=TwoWay}" IsMultiSelectCheckBoxEnabled="False" />
+    </Grid>
+
 </helpers:BasePage>

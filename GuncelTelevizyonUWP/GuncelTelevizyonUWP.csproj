@@ -102,6 +102,7 @@
     <Compile Include="Context\ApplicationContext.cs" />
     <Compile Include="Context\ConfigurationContext.cs" />
     <Compile Include="Converters\BooleanToReverseConverter.cs" />
+    <Compile Include="Converters\CountToBooleanConverter.cs" />
     <Compile Include="Converters\DarkAppThemeToBooleanConverter.cs" />
     <Compile Include="Converters\LightThemeToBooleanConverter.cs" />
     <Compile Include="Helpers\BaseApplication.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Models\AppTheme.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\ChannelCategory.cs" />
+    <Compile Include="Models\DummyChannelCurrentStreamInformation.cs" />
     <Compile Include="Models\HamburgerMenuItemType.cs" />
     <Compile Include="Selectors\HamburgerMenuItemSelector.cs" />
     <Compile Include="Services\ChannelService.cs" />
