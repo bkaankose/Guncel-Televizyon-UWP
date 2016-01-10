@@ -11,5 +11,6 @@ namespace GuncelTelevizyonUWP.Models
         public string ChannelImage { get; set; }
         public string ChannelName { get; set; }
         public string StreamName { get; set; }
+        public DateTime StreamTime { get; set; }
     }
 }
