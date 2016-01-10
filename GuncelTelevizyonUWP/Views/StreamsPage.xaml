@@ -2,7 +2,7 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:prism="using:Prism.Windows.Mvvm"
     xmlns:helpers="using:GuncelTelevizyonUWP.Helpers"
-    x:Class="GuncelTelevizyonUWP.Views.CurrentStreamsPage"
+    x:Class="GuncelTelevizyonUWP.Views.StreamsPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ext="using:WinRTXamlToolkit.Controls.Extensions"

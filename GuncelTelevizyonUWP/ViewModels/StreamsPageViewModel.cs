@@ -12,7 +12,7 @@ using Prism.Commands;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
-    public class CurrentStreamsPageViewModel : BaseViewModel
+    public class StreamsPageViewModel : BaseViewModel
     {
         #region Properties
 
@@ -43,7 +43,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         public DelegateCommand SetAlarmCommand { get; set; }
 
         #endregion
-        public CurrentStreamsPageViewModel(IChannelRepository channelRepository)
+        public StreamsPageViewModel(IChannelRepository channelRepository)
         {
             _channelRepository = channelRepository;
             InitializeCommands();
@@ -53,7 +53,14 @@ namespace GuncelTelevizyonUWP.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            CurrentStreams = await _channelRepository.GetCurrentChannelInformation();
+
+            var parameter = e.Parameter;
+            if (parameter == null) // List current streams
+                CurrentStreams = await _channelRepository.GetCurrentChannelInformation();
+            else if (parameter.GetType() == typeof(int)) // Navigated with the channelId , list streams of that channel.
+            {
+
+            }
         }
 
         private void InitializeCommands()

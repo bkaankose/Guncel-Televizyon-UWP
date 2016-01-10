@@ -16,9 +16,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace GuncelTelevizyonUWP.Views
 {
-    public sealed partial class CurrentStreamsPage : BasePage
+    public sealed partial class StreamsPage : BasePage
     {
-        public CurrentStreamsPage()
+        public StreamsPage()
         {
             this.InitializeComponent();
         }
