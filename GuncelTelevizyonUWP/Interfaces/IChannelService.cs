@@ -11,5 +11,6 @@ namespace GuncelTelevizyonUWP.Interfaces
     public interface IChannelService
     {
         Task<ObservableCollection<DummyChannelCurrentStreamInformation>> GetCurrentChannelInformation();
+        Task<ObservableCollection<ChannelModelView>> GetChannels();
     }
 }

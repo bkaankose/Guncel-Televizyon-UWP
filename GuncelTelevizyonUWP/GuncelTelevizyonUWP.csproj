@@ -102,9 +102,12 @@
     <Compile Include="Context\ApplicationContext.cs" />
     <Compile Include="Context\ConfigurationContext.cs" />
     <Compile Include="Converters\BooleanToReverseConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityReverseConverter.cs" />
     <Compile Include="Converters\CountToBooleanConverter.cs" />
     <Compile Include="Converters\DarkAppThemeToBooleanConverter.cs" />
     <Compile Include="Converters\LightThemeToBooleanConverter.cs" />
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\BaseApplication.cs" />
     <Compile Include="Helpers\BasePage.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
@@ -129,14 +132,14 @@
     <Compile Include="Interfaces\ISettingsRepository.cs" />
     <Compile Include="Repositories\SettingsRepository.cs" />
     <Compile Include="Services\SettingsService.cs" />
-    <Compile Include="ViewModels\CurrentStreamsPageViewModel.cs" />
+    <Compile Include="ViewModels\StreamsPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\ChannelBrowserPage.xaml.cs">
       <DependentUpon>ChannelBrowserPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CurrentStreamsPage.xaml.cs">
-      <DependentUpon>CurrentStreamsPage.xaml</DependentUpon>
+    <Compile Include="Views\StreamsPage.xaml.cs">
+      <DependentUpon>StreamsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -172,7 +175,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CurrentStreamsPage.xaml">
+    <Page Include="Views\StreamsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

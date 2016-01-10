@@ -11,6 +11,23 @@ namespace GuncelTelevizyonUWP.Services
 {
     public class ChannelService : IChannelService
     {
+        public async Task<ObservableCollection<ChannelModelView>> GetChannels()
+        {
+            var nRet = new ObservableCollection<ChannelModelView>();
+
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = true, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar" ,  StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+            nRet.Add(new ChannelModelView() { Id = 1, IsFavorited = false, IsPrivate = false, Name = "Kanal D", CurrentStream = "En Son Babalar Duyar", StreamUrl = "" });
+
+            return nRet;
+        }
+
         public async Task<ObservableCollection<DummyChannelCurrentStreamInformation>> GetCurrentChannelInformation()
         {
             var nRet = new ObservableCollection<DummyChannelCurrentStreamInformation>();

@@ -17,6 +17,11 @@ namespace GuncelTelevizyonUWP.Repositories
             _channelService = channelService;
         }
 
+        public async Task<ObservableCollection<ChannelModelView>> GetChannels()
+        {
+            return await _channelService.GetChannels();
+        }
+
         public async Task<ObservableCollection<DummyChannelCurrentStreamInformation>> GetCurrentChannelInformation()
         {
             return await _channelService.GetCurrentChannelInformation();
