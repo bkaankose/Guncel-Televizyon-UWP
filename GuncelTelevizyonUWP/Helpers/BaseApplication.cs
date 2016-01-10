@@ -31,7 +31,7 @@ namespace GuncelTelevizyonUWP.Helpers
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
             await RegisterRepositories();
-            NavigationService.Navigate("Main", null);
+            NavigationService.Navigate("Synchronization", null);
         }
         private object ViewModelFactoy(Type modelType)
         {
@@ -47,6 +47,8 @@ namespace GuncelTelevizyonUWP.Helpers
 
             ApplicationContext.Container.RegisterInstance<IChannelService>(Resolve<ChannelService>());
             ApplicationContext.Container.RegisterInstance<IChannelRepository>(Resolve<ChannelRepository>());
+
+            ApplicationContext.Container.RegisterInstance<ISynchronizationService>(Resolve<SynchronizationService>());
 
             ApplicationContext.Container.RegisterInstance(NavigationService);
             ApplicationContext.Container.RegisterInstance(SessionStateService);
