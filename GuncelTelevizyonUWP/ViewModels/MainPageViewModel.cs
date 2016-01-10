@@ -129,7 +129,7 @@ namespace GuncelTelevizyonUWP.ViewModels
                         ChangeSubPage("ChannelBrowser", SelectedHamburgerMenuItem.Object);
                         break;
                     case HamburgerMenuItemType.CurrentStreams:
-                        ChangeSubPage("CurrentStreams", null);
+                        ChangeSubPage("Streams", null);
                         break;
                 }
             }
