@@ -16,8 +16,8 @@ namespace GuncelTelevizyonUWP.Helpers
 {
     public class SubPage : Frame
     {
-        INavigationService _navigationService;
-        ISessionStateService _sessionStateService;
+        //INavigationService _navigationService;
+        //ISessionStateService _sessionStateService;
 
         #region DependencyProperties
         public string PageName
@@ -45,8 +45,8 @@ namespace GuncelTelevizyonUWP.Helpers
         #endregion
         public SubPage()
         {
-            _navigationService = ApplicationContext.Resolve<INavigationService>();
-            _sessionStateService = ApplicationContext.Resolve<ISessionStateService>();
+            //_navigationService = ApplicationContext.Resolve<INavigationService>();
+            //_sessionStateService = ApplicationContext.Resolve<ISessionStateService>();
             this.Loaded += SubPage_Loaded;
         }
 
@@ -56,14 +56,14 @@ namespace GuncelTelevizyonUWP.Helpers
         }
         public void SetContent()
         {
-            object latestPageName = null;
-            _sessionStateService.SessionState.TryGetValue("latestPageName",out latestPageName);
-            if (latestPageName != null && latestPageName.ToString() == PageName)
-                return;
-            else
-                _sessionStateService.SessionState.Remove("latestPageName");
+            //object latestPageName = null;
+            //_sessionStateService.SessionState.TryGetValue("latestPageName",out latestPageName);
+            //if (latestPageName != null && latestPageName.ToString() == PageName)
+            //    return;
+            //else
+            //    _sessionStateService.SessionState.Remove("latestPageName");
 
-            _sessionStateService.SessionState.Add("latestPageName", PageName);
+            //_sessionStateService.SessionState.Add("latestPageName", PageName);
             Type type = GetPageTypeByName(PageName);
 
             if (type == null)
