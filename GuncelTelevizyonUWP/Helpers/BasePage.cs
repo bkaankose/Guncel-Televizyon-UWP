@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace GuncelTelevizyonUWP.Helpers
@@ -17,6 +18,7 @@ namespace GuncelTelevizyonUWP.Helpers
         public BasePage()
         {
             ConfigurationContext.SettingsChanged += (c, r) => { InitializeSettings(c as Settings); };
+            this.Transitions = new TransitionCollection() { new EntranceThemeTransition() };
         }
         private void InitializeSettings(Settings model)
         {
