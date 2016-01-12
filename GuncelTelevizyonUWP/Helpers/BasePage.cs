@@ -21,11 +21,11 @@ namespace GuncelTelevizyonUWP.Helpers
         {
             ConfigurationContext.SettingsChanged += (c, r) => { InitializeSettings(c as Settings); };
             InitializeSettings(ConfigurationContext.MainSettings);
-            this.Transitions = new TransitionCollection() { new EntranceThemeTransition() };
+            //this.Transitions = new TransitionCollection() { new EntranceThemeTransition() };
         }
         private void InitializeSettings(Settings model)
         {
-            if(model.Theme == AppTheme.Dark)
+            if (model.Theme == AppTheme.Dark)
             {
                 base.RequestedTheme = Windows.UI.Xaml.ElementTheme.Dark;
                 Background = new SolidColorBrush(Colors.Black);
@@ -35,7 +35,6 @@ namespace GuncelTelevizyonUWP.Helpers
                 base.RequestedTheme = Windows.UI.Xaml.ElementTheme.Light;
                 Background = new SolidColorBrush(Colors.White);
             }
-            //base.RequestedTheme = model.Theme == AppTheme.Dark ? Windows.UI.Xaml.ElementTheme.Dark : Windows.UI.Xaml.ElementTheme.Light;
         }
     }
 }
