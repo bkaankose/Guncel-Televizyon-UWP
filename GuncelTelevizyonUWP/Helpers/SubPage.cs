@@ -10,15 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 namespace GuncelTelevizyonUWP.Helpers
 {
     public class SubPage : Frame
     {
-        //INavigationService _navigationService;
-        //ISessionStateService _sessionStateService;
-
         #region DependencyProperties
         public string PageName
         {
@@ -28,10 +26,6 @@ namespace GuncelTelevizyonUWP.Helpers
 
         public static readonly DependencyProperty PageNameProperty =
             DependencyProperty.Register("PageName", typeof(string), typeof(Frame), null);
-
-
-
-
 
         public object PageParameter
         {
@@ -45,8 +39,6 @@ namespace GuncelTelevizyonUWP.Helpers
         #endregion
         public SubPage()
         {
-            //_navigationService = ApplicationContext.Resolve<INavigationService>();
-            //_sessionStateService = ApplicationContext.Resolve<ISessionStateService>();
             this.Loaded += SubPage_Loaded;
         }
 
@@ -56,21 +48,13 @@ namespace GuncelTelevizyonUWP.Helpers
         }
         public void SetContent()
         {
-            //object latestPageName = null;
-            //_sessionStateService.SessionState.TryGetValue("latestPageName",out latestPageName);
-            //if (latestPageName != null && latestPageName.ToString() == PageName)
-            //    return;
-            //else
-            //    _sessionStateService.SessionState.Remove("latestPageName");
-
-            //_sessionStateService.SessionState.Add("latestPageName", PageName);
             Type type = GetPageTypeByName(PageName);
 
             if (type == null)
                 Debugger.Break();
 
             var control = Activator.CreateInstance(type) as BasePage;
-
+            control.Transitions = new TransitionCollection() { new EntranceThemeTransition() };
             (control.DataContext as BaseViewModel).OnNavigatedTo(new NavigatedToEventArgs() { NavigationMode = NavigationMode.New, Parameter = PageParameter }, null);
             this.Content = new Grid();
             (this.Content as Grid).Children.Clear();
