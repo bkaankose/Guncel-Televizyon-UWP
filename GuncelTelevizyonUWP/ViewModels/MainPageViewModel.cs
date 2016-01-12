@@ -99,17 +99,18 @@ namespace GuncelTelevizyonUWP.ViewModels
             HamburgerMenuItems = new ObservableCollection<HamburgerMenuItem>();
             BottomHamburgerMenuItems = new ObservableCollection<HamburgerMenuItem>();
 
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory , Object = ChannelCategory.All });
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
-            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Tüm Kanallar", Icon = "", Type = HamburgerMenuItemType.ChannelCategory , Object = ChannelCategory.All });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Ulusal", Icon = "", Type = HamburgerMenuItemType.ChannelCategory , Object = ChannelCategory.Ulusal });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Haber", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Müzik", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Eğlence", Icon = "   ", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Çocuk", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
+            HamburgerMenuItems.Add(new HamburgerMenuItem() { Title = "Sinema", Icon = "", Type = HamburgerMenuItemType.ChannelCategory });
 
             BottomHamburgerMenuItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Yayın Akışı", Type = HamburgerMenuItemType.CurrentStreams });
             BottomHamburgerMenuItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Ayarlar", Type = HamburgerMenuItemType.Settings });
-            
+            BottomHamburgerMenuItems.Add(new HamburgerMenuItem() { Icon = "", Title = "Hakkında", Type = HamburgerMenuItemType.About });
+
 
             this.PropertyChanged += MainVMPropertyChanged;
         }
@@ -130,6 +131,9 @@ namespace GuncelTelevizyonUWP.ViewModels
                         break;
                     case HamburgerMenuItemType.CurrentStreams:
                         ChangeSubPage("Streams", null);
+                        break;
+                    case HamburgerMenuItemType.About:
+                        ChangeSubPage("About", null);
                         break;
                 }
             }
