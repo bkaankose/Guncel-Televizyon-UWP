@@ -18,15 +18,12 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <!--<TextBlock Text="Ayarlar" Style="{StaticResource HeaderTextBlockStyle}" />-->
             <StackPanel Grid.Row="1">
-                <TextBlock Text="Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
-                <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="Açık" IsChecked="{Binding CurrentSettings.Theme,Mode=TwoWay,Converter={StaticResource lightThemeToBoolean}}" />
-                    <RadioButton Content="Koyu" IsChecked="{Binding CurrentSettings.Theme,Mode=TwoWay,Converter={StaticResource darkThemeToBoolean}}" />
-                </StackPanel>
+                <TextBlock Text="Koyu Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
+                <!--<ToggleSwitch IsOn="{Binding CurrentSettings.Theme,Converter={StaticResource darkThemeToBoolean},Mode=TwoWay}"/>-->
+                <ToggleSwitch IsOn="{Binding IsDarkTheme,Mode=TwoWay}"/>
             </StackPanel>
-            <Grid Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
+            <!--<Grid Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
                 <Button HorizontalAlignment="Right" Command="{Binding SaveSettingsCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
@@ -35,7 +32,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-            </Grid>
+            </Grid>-->
         </Grid>
     </Grid>
 </helpers:BasePage>

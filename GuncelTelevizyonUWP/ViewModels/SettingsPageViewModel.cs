@@ -14,6 +14,13 @@ namespace GuncelTelevizyonUWP.ViewModels
     {
         #region Properties
 
+        private bool _isDarkTheme;
+
+        public bool IsDarkTheme
+        {
+            get { return _isDarkTheme; }
+            set { _isDarkTheme = value; OnPropertyChanged("IsDarkTheme"); }
+        }
 
         #endregion
 
@@ -40,6 +47,18 @@ namespace GuncelTelevizyonUWP.ViewModels
         public override void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
+            IsDarkTheme = CurrentSettings.Theme == Models.AppTheme.Dark ? true : false;
+
+            this.PropertyChanged += SettingsPageViewModel_PropertyChanged;
+        }
+
+        private void SettingsPageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(IsDarkTheme))
+            {
+                CurrentSettings.Theme = IsDarkTheme ? Models.AppTheme.Dark : Models.AppTheme.Light;
+                SaveSettings();
+            }
         }
     }
 }
