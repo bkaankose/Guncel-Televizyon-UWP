@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GuncelTelevizyonUWP</RootNamespace>
     <AssemblyName>GuncelTelevizyonUWP</AssemblyName>
-    <DefaultLanguage>en-US</DefaultLanguage>
+    <DefaultLanguage>tr-TR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10240.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
@@ -106,7 +106,6 @@
     <Compile Include="Converters\BooleanToVisibilityReverseConverter.cs" />
     <Compile Include="Converters\CountToBooleanConverter.cs" />
     <Compile Include="Converters\DarkAppThemeToBooleanConverter.cs" />
-    <Compile Include="Converters\LightThemeToBooleanConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\BaseApplication.cs" />
     <Compile Include="Helpers\BasePage.cs" />
@@ -124,6 +123,7 @@
     <Compile Include="Selectors\HamburgerMenuItemSelector.cs" />
     <Compile Include="Services\ChannelService.cs" />
     <Compile Include="Services\SynchronizationService.cs" />
+    <Compile Include="ViewModels\AboutPageViewModel.cs" />
     <Compile Include="ViewModels\ChannelBrowserPageViewModel.cs" />
     <Compile Include="Models\HamburgerMenuItem.cs" />
     <Compile Include="Models\ChannelModelView.cs" />
@@ -138,6 +138,9 @@
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\SynchronizationPageViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChannelBrowserPage.xaml.cs">
       <DependentUpon>ChannelBrowserPage.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ChannelBrowserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,7 +205,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Image\" />
+  </ItemGroup>
   <ItemGroup>
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
       <Name>Behaviors SDK %28XAML%29</Name>
