@@ -31,6 +31,7 @@ namespace GuncelTelevizyonUWP.Helpers
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
             await RegisterRepositories();
+            await ApplicationContext.Resolve<ISettingsRepository>().GetSettingsAsync();
             NavigationService.Navigate("Synchronization", null);
         }
         private object ViewModelFactoy(Type modelType)
