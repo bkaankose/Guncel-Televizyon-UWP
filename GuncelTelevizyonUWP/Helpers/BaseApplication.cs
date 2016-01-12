@@ -51,6 +51,8 @@ namespace GuncelTelevizyonUWP.Helpers
 
             ApplicationContext.Container.RegisterInstance<ISynchronizationService>(Resolve<SynchronizationService>());
 
+            ApplicationContext.Container.RegisterInstance<IDialogService>(Resolve<DialogService>());
+
             ApplicationContext.Container.RegisterInstance(NavigationService);
             ApplicationContext.Container.RegisterInstance(SessionStateService);
         }
