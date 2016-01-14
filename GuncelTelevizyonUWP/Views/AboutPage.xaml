@@ -11,29 +11,64 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Margin="25,10">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="Geliştirme" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}" />
-            <TextBlock TextWrapping="Wrap" Margin="0,10" Grid.Row="2">
-                Bu yazılım Burak Kaan Köse tarafından , açık kaynaklı olarak GPL lisansı altında geliştirilmiştir.Projenin kaynak kodlarına aşağıdaki 'İçerik' bölümünden ulaşabilirsiniz.
-            </TextBlock>
-            <TextBlock Text="Sürüm" Grid.Row="3" Style="{StaticResource SubheaderTextBlockStyle}" />
-            <TextBlock TextWrapping="Wrap" Margin="0,10" Grid.Row="4">
+        <ScrollViewer>
+            <Grid Margin="25,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Geliştirme" Grid.Row="1" Style="{StaticResource SubheaderTextBlockStyle}" />
+                <TextBlock TextWrapping="Wrap" Text="Bu yazılım Burak Kaan Köse tarafından , açık kaynaklı olarak GPL lisansı altında geliştirilmiştir.Projenin kaynak kodlarına aşağıdaki 'İçerik' bölümünden ulaşabilirsiniz." Margin="0,10" Grid.Row="2" />
+                <TextBlock Text="Sürüm" Grid.Row="3" Style="{StaticResource SubheaderTextBlockStyle}" />
+                <TextBlock TextWrapping="Wrap" Margin="0,10" Grid.Row="4">
                 <Run Text="{Binding Version}" />
-            </TextBlock>
-            <TextBlock Text="Geribildirim" Grid.Row="5" Style="{StaticResource SubheaderTextBlockStyle}" />
-            <TextBlock Grid.Row="6">
+                </TextBlock>
+
+                <TextBlock Text="İçerik" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="5" />
+                <StackPanel Grid.Row="6">
+                    <HyperlinkButton Content="GitHub" Command="{Binding NavigateToUrlCommand}" CommandParameter="https://github.com/bkaankose/Guncel-Televizyon-UWP" />
+                    <HyperlinkButton Content="Twitter" Command="{Binding NavigateToUrlCommand}" CommandParameter="https://www.twitter.com/TrayhopeR" />
+                </StackPanel>
+                <TextBlock Text="Geribildirim" Grid.Row="7" Style="{StaticResource SubheaderTextBlockStyle}" />
+                <TextBlock Grid.Row="8" TextWrapping="Wrap">
                 Uygulama hakkındaki görüş ve önerilerinizi aşağıdaki form aracılığı ile bana ulaştırabilirsiniz.
-            </TextBlock>
-        </Grid>
+                </TextBlock>
+                <Grid Grid.Row="9" Width="350" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Ad" />
+                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,2,5,0" />
+                    <TextBlock Text="Soyad" Grid.Row="2" />
+                    <TextBox Grid.Row="3" HorizontalAlignment="Stretch" Margin="0,2,5,0" />
+                    <TextBlock Text="E-Posta" Grid.Row="4" />
+                    <TextBox Grid.Row="5" HorizontalAlignment="Stretch" Margin="0,2,5,0" MaxHeight="200" VerticalAlignment="Stretch" />
+                    <TextBlock Text="Mesaj" Grid.Row="6" />
+                    <TextBox Grid.Row="7" AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="0,2,5,0" Height="200" VerticalAlignment="Stretch" />
+                    <Button Grid.Row="8" HorizontalAlignment="Stretch" Margin="0,2,5,0">
+                        <TextBlock>
+                        <Run Text="" FontFamily="Segoe MDL2 Assets"  />
+                        <Run Text="Gönder" />
+                        </TextBlock>
+                    </Button>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </helpers:BasePage>
