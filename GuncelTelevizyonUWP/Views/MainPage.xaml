@@ -151,7 +151,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Content="" Command="{Binding AnimatePaneCommand}" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" FontSize="22" Width="50" Style="{StaticResource OpenCloseButtonTemplate}" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                    <TextBlock Text="Güncel Televizyon" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25.333" FontFamily="Yu Gothic UI Semilight" />
+                    <TextBlock Text="{Binding CurrentPageTitle}" Grid.ColumnSpan="2" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23"/>
                 </Grid>
                 <helpers:SubPage x:Name="subView" PageParameter="{Binding SubPageParameter}" PageName="{Binding SubPageName}" Grid.Row="1" />
             </Grid>

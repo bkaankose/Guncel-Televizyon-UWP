@@ -84,6 +84,15 @@ namespace GuncelTelevizyonUWP.ViewModels
             set { _bottomHamburgerMenuItems = value; OnPropertyChanged("BottomHamburgerMenuItems"); }
         }
 
+        private string _currentPageTitle = "Kanallar";
+
+        public string CurrentPageTitle
+        {
+            get { return _currentPageTitle; }
+            set { _currentPageTitle = value; OnPropertyChanged("CurrentPageTitle"); }
+        }
+
+
         #endregion
 
         public MainPageViewModel(ISettingsRepository settingsRepository)
@@ -124,16 +133,16 @@ namespace GuncelTelevizyonUWP.ViewModels
                 switch(SelectedHamburgerMenuItem.Type)
                 {
                     case HamburgerMenuItemType.Settings:
-                        ChangeSubPage("Settings", null);
+                        ChangeSubPage("Settings", null,"Ayarlar");
                         break;
                     case HamburgerMenuItemType.ChannelCategory:
-                        ChangeSubPage("ChannelBrowser", SelectedHamburgerMenuItem.Object);
+                        ChangeSubPage("ChannelBrowser", SelectedHamburgerMenuItem.Object , "Kanallar");
                         break;
                     case HamburgerMenuItemType.CurrentStreams:
-                        ChangeSubPage("Streams", null);
+                        ChangeSubPage("Streams", null,"Yayın Akışı");
                         break;
                     case HamburgerMenuItemType.About:
-                        ChangeSubPage("About", null);
+                        ChangeSubPage("About", null,"Hakkında");
                         break;
                 }
             }
@@ -153,8 +162,9 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             IsPaneOpen = !IsPaneOpen;
         }
-        private void ChangeSubPage(string pageName,object pageParameter)
+        private void ChangeSubPage(string pageName,object pageParameter,string pageTitle)
         {
+            CurrentPageTitle = pageTitle;
             SubPageParameter = pageParameter;
             SubPageName = pageName;
             OnPropertyChanged("SubPageChanged");
