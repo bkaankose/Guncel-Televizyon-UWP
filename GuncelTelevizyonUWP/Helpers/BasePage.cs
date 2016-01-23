@@ -21,7 +21,7 @@ namespace GuncelTelevizyonUWP.Helpers
         {
             ConfigurationContext.SettingsChanged += (c, r) => { InitializeSettings(c as Settings); };
             InitializeSettings(ConfigurationContext.MainSettings);
-            //this.Transitions = new TransitionCollection() { new EntranceThemeTransition() };
+            this.Transitions = new TransitionCollection() { new EntranceThemeTransition() };
         }
         private void InitializeSettings(Settings model)
         {
