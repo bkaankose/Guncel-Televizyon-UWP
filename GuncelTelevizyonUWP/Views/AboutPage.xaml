@@ -11,7 +11,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer>
+        <ScrollViewer HorizontalContentAlignment="Left">
             <Grid Margin="25,10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -29,7 +29,7 @@
                 <TextBlock TextWrapping="Wrap" Text="Bu yazılım Burak Kaan Köse tarafından , açık kaynaklı olarak GPL lisansı altında geliştirilmiştir.Projenin kaynak kodlarına aşağıdaki 'İçerik' bölümünden ulaşabilirsiniz." Margin="0,10" Grid.Row="2" />
                 <TextBlock Text="Sürüm" Grid.Row="3" Style="{StaticResource SubheaderTextBlockStyle}" />
                 <TextBlock TextWrapping="Wrap" Margin="0,10" Grid.Row="4">
-                <Run Text="{Binding Version}" />
+                    <Run Text="{Binding Version}" />
                 </TextBlock>
 
                 <TextBlock Text="İçerik" Style="{StaticResource SubheaderTextBlockStyle}" Grid.Row="5" />
@@ -41,7 +41,12 @@
                 <TextBlock Grid.Row="8" TextWrapping="Wrap">
                 Uygulama hakkındaki görüş ve önerilerinizi aşağıdaki form aracılığı ile bana ulaştırabilirsiniz.
                 </TextBlock>
-                <Grid Grid.Row="9" Width="350" HorizontalAlignment="Left">
+                <Grid Grid.Row="9" Width="250" HorizontalAlignment="Left">
+                    <Grid.Resources>
+                        <Style TargetType="TextBox">
+                            <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        </Style>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
