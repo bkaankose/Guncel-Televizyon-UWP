@@ -1,0 +1,3 @@
+MainPackage=C:\Users\Burak\Desktop\Guncel Televizyon UWP\Guncel-Televizyon-UWP\GuncelTelevizyonUWP\bin\ARM\Debug\GuncelTelevizyonUWP_2.0.1.0_ARM_Debug.appx
+SymbolPackage=C:\Users\Burak\Desktop\GuncelTelevizyonUWP_2.0.1.0_Debug_Test\GuncelTelevizyonUWP_2.0.1.0_ARM_Debug.appxsym
+ResourcePack=C:\Users\Burak\Desktop\Guncel Televizyon UWP\Guncel-Televizyon-UWP\GuncelTelevizyonUWP\bin\ARM\Debug\GuncelTelevizyonUWP_2.0.1.0_language-en.appx
