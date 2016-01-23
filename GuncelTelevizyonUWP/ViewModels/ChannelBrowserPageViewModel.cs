@@ -40,11 +40,16 @@ namespace GuncelTelevizyonUWP.ViewModels
 
         public DelegateCommand FavoriteChannelCommand { get; set; }
         public DelegateCommand UnFavoriteChannelCommand { get; set; }
+        public DelegateCommand WatchCommand { get; set; }
+
         #endregion
-        private IChannelRepository _channelRepository; 
-        public ChannelBrowserPageViewModel(IChannelRepository channelRepository)
+        private IChannelRepository _channelRepository;
+        private INavigationService _navigationService;
+        public ChannelBrowserPageViewModel(IChannelRepository channelRepository,INavigationService navigationService)
         {
             _channelRepository = channelRepository;
+            _navigationService = navigationService;
+
             InitializeCommands();
         }
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
@@ -57,6 +62,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             FavoriteChannelCommand = new DelegateCommand(FavoriteChannel);
             UnFavoriteChannelCommand = new DelegateCommand(UnFavoriteChannel);
+            WatchCommand = new DelegateCommand(Watch);
         }
         private void FavoriteChannel()
         {
@@ -67,7 +73,10 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
 
         }
-
+        private void Watch()
+        {
+            _navigationService.Navigate("Watch", SelectedChannel);
+        }
 
     }
 }

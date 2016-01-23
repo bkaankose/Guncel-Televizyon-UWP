@@ -33,9 +33,10 @@
     <helpers:BasePage.BottomAppBar>
         <CommandBar x:Name="commandBar" Visibility="{Binding SelectedChannel,Converter={StaticResource nullToVisibility}}" HorizontalContentAlignment="Center">
             <CommandBar.Content>
-                <StackPanel HorizontalAlignment="Stretch">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                     <AppBarButton Command="{Binding FavoriteChannelCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Favorile" Visibility="{Binding SelectedChannel.IsFavorited,Converter={StaticResource boolToVisibilityReverse}}" Icon="Favorite" HorizontalAlignment="Center" />
                     <AppBarButton Command="{Binding UnFavoriteChannelCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Favoriden Çıkar" Visibility="{Binding SelectedChannel.IsFavorited,Converter={StaticResource boolToVisibility}}" Icon="UnFavorite" HorizontalAlignment="Center" />
+                    <AppBarButton Command="{Binding WatchCommand}" Icon="Play" Label="İzle" />
                 </StackPanel>
             </CommandBar.Content>
         </CommandBar>
