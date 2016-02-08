@@ -22,15 +22,22 @@ namespace GuncelTelevizyonUWP.Services
 
         public event EventHandler<int> ProgressChanged;
 
-        public async Task SynchronizeChannelImage(int channelId)
+        public async Task SynchronizeChannelImage(Guid channelId)
         {
             var imageExists = await ConfigurationContext.LocalFolder.TryGetItemAsync(string.Format("Images\\{0}.png", channelId));
             if (imageExists == null)
             { // Channel image is not stored yet , download and save.
-                IStorageFile downloadedImage = await ConfigurationContext.LocalFolder.CreateFileAsync(string.Format("Images\\{0}.png", channelId));
-                var operation = _downloader.CreateDownload(new Uri(string.Format("{0}{1}.png", ConfigurationContext.ChannelImageStorageURL, channelId), UriKind.Absolute), downloadedImage);
-                Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
-                await operation.StartAsync().AsTask(new CancellationToken(), progress);
+                try
+                {
+                    IStorageFile downloadedImage = await ConfigurationContext.LocalFolder.CreateFileAsync(string.Format("Images\\{0}.png", channelId));
+                    var operation = _downloader.CreateDownload(new Uri(string.Format("{0}{1}.png", ConfigurationContext.ChannelImageStorageURL, channelId), UriKind.Absolute), downloadedImage);
+                    Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
+                    await operation.StartAsync().AsTask(new CancellationToken(), progress);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
 

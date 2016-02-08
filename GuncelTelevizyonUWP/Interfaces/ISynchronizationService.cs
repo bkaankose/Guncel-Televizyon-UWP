@@ -8,7 +8,7 @@ namespace GuncelTelevizyonUWP.Interfaces
 {
     public interface ISynchronizationService
     {
-        Task SynchronizeChannelImage(int channelId);
+        Task SynchronizeChannelImage(Guid channelId);
         event EventHandler<int> ProgressChanged;
     }
 }
