@@ -4,6 +4,7 @@ using GuncelTelevizyonUWP.Models;
 using GuncelTelevizyonUWP.Repositories;
 using GuncelTelevizyonUWP.Services;
 using Microsoft.Practices.Unity;
+using Microsoft.WindowsAzure.MobileServices;
 using Prism.Mvvm;
 using Prism.Windows;
 using System;
@@ -13,6 +14,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
 
 namespace GuncelTelevizyonUWP.Helpers
@@ -22,6 +24,7 @@ namespace GuncelTelevizyonUWP.Helpers
         public T Resolve<T>() => ApplicationContext.Container.Resolve<T>();
         private Assembly[] cachedAssemblies = null;
         private Dictionary<string, Type> cachedViewModels = null;
+        private MobileServiceClient ServiceClient;
 
         public BaseApplication()
         {
@@ -30,6 +33,7 @@ namespace GuncelTelevizyonUWP.Helpers
         
         protected override async Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
+            ServiceClient = new MobileServiceClient(ResourceLoader.GetForCurrentView().GetString("MobileServiceUrl"), ResourceLoader.GetForCurrentView().GetString("MobileServiceApplicationKey"));
             await RegisterRepositories();
             await ApplicationContext.Resolve<ISettingsRepository>().GetSettingsAsync();
             NavigationService.Navigate("Synchronization", null);
@@ -42,6 +46,10 @@ namespace GuncelTelevizyonUWP.Helpers
         {
             ViewModelLocationProvider.SetDefaultViewModelFactory(ViewModelFactoy);
             ViewModelLocationProvider.SetDefaultViewTypeToViewModelTypeResolver(PinpointViewModel);
+
+            ApplicationContext.Container.RegisterInstance(ServiceClient);
+            ApplicationContext.Container.RegisterInstance<MobileServiceHelper>(Resolve<MobileServiceHelper>());
+
 
             ApplicationContext.Container.RegisterInstance<ISettingsService>(Resolve<SettingsService>());
             ApplicationContext.Container.RegisterInstance<ISettingsRepository>(Resolve<SettingsRepository>());
