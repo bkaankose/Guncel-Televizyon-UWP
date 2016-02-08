@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,19 @@ namespace GuncelTelevizyonUWP.Models
 {
     public class Channel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
-        public string CurrentStream { get; set; }
-        public string StreamUrl { get; set; }
-        public bool IsPrivate { get; set; }
-        
+        [JsonProperty(PropertyName = "url")]
+        public string URL { get; set; }
+        [JsonProperty(PropertyName = "category")]
+        public ChannelCategory Category { get; set; }
+        [JsonProperty(PropertyName = "streaminformationsuffix")]
+        public string StreamInformationSuffix { get; set; }
+        [JsonProperty(PropertyName = "isspecial")]
+        public bool IsSpecial { get; set; }
+        [JsonProperty(PropertyName = "isactive")]
+        public bool IsActive { get; set; }
+
     }
 }
