@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Prism.Windows.Navigation;
 using System.Collections.ObjectModel;
 using GuncelTelevizyonUWP.Models;
+using GuncelTelevizyonUWP.Context;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
@@ -60,7 +61,7 @@ namespace GuncelTelevizyonUWP.ViewModels
             foreach(var channel in channels)
             {
                 InformationText = string.Format("{0} yükleniyor", channel.Name);
-                await _synchronizationService.SynchronizeChannelImage(channel.Id);
+                await _synchronizationService.SynchronizeChannelImage(Guid.Parse(channel.Id));
             }
 
             navigationService.Navigate("Main", null);
