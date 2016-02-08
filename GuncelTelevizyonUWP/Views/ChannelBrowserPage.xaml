@@ -24,7 +24,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="{Binding CurrentStream}" FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding Name}"  Grid.Row="1" />
+                    <TextBlock Text="{Binding Channel.Name}"  Grid.Row="1" />
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -36,7 +36,7 @@
                 <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
                     <AppBarButton Command="{Binding FavoriteChannelCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Favorile" Visibility="{Binding SelectedChannel.IsFavorited,Converter={StaticResource boolToVisibilityReverse}}" Icon="Favorite" HorizontalAlignment="Center" />
                     <AppBarButton Command="{Binding UnFavoriteChannelCommand}" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" Label="Favoriden Çıkar" Visibility="{Binding SelectedChannel.IsFavorited,Converter={StaticResource boolToVisibility}}" Icon="UnFavorite" HorizontalAlignment="Center" />
-                    <AppBarButton Command="{Binding WatchCommand}" Icon="Play" Label="İzle" />
+                    <AppBarButton Command="{Binding WatchCommand}" Icon="Play" Label="İzle" IsCompact="{Binding IsOpen,ElementName=commandBar,Converter={StaticResource booleanToReverse}}" />
                 </StackPanel>
             </CommandBar.Content>
         </CommandBar>
@@ -44,7 +44,5 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView ItemsSource="{Binding CurrentChannels}" SelectedItem="{Binding SelectedChannel,Mode=TwoWay}" ItemTemplate="{StaticResource ChannelTemplate}" />
-
-
     </Grid>
 </helpers:BasePage>

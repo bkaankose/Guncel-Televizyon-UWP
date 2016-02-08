@@ -16,7 +16,6 @@
     <helpers:BasePage.Resources>
         <Style x:Key="TransportStyle" TargetType="MediaTransportControls">
             <Setter Property="IsTabStop" Value="False"/>
-            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FlowDirection" Value="LeftToRight"/>
             <Setter Property="UseSystemFocusVisuals" Value="True"/>
             <Setter Property="IsTextScaleFactorEnabled" Value="False"/>
@@ -283,7 +282,7 @@
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <AppBarButton x:Name="ChannelsButton" Background="#1abc9c" HorizontalAlignment="Left" Style="{StaticResource AppBarButtonStyle}" Command="{Binding DataContext.OpenPaneCommand,ElementName='root'}">
+                                            <AppBarButton x:Name="ChannelsButton" HorizontalAlignment="Left" Style="{StaticResource AppBarButtonStyle}" Command="{Binding DataContext.OpenPaneCommand,ElementName='root'}">
                                                 <AppBarButton.Icon>
                                                     <SymbolIcon  Symbol="List"/>
                                                 </AppBarButton.Icon>
