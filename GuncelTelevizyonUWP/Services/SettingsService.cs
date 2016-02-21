@@ -25,36 +25,21 @@ namespace GuncelTelevizyonUWP.Services
             if (File.Exists(string.Format("{0}\\{1}", storageFolder.Path, "settings.json")))
             {
                 StorageFile settingsJson = await storageFolder.GetFileAsync("settings.json");
-               ConfigurationContext.MainSettings = JsonConvert.DeserializeObject<Settings>((JObject.Parse(await FileIO.ReadTextAsync(settingsJson)).ToString()));
-            }else
-               ConfigurationContext.MainSettings = new Settings() { Theme = AppTheme.Dark, FavoritedChannelIds = new List<int>() };
+                ConfigurationContext.MainSettings = JsonConvert.DeserializeObject<Settings>((JObject.Parse(await FileIO.ReadTextAsync(settingsJson)).ToString()));
+            }
+            else
+               ConfigurationContext.MainSettings = new Settings() { Theme = AppTheme.Dark, FavoritedChannelIds = new List<Guid>() };
 
 
             return ConfigurationContext.MainSettings;
         }
         public async Task<bool> SaveSettingsAsync(Settings _settingsModel)
         {
-            StorageFile storageFile = null;
+            StorageFile storageFile = await storageFolder.CreateFileAsync("settings.json", CreationCollisionOption.OpenIfExists);
             try
             {
-                try
-                {
-                    storageFile = await storageFolder.GetFileAsync("settings.json");
-                }
-                catch (Exception)
-                {
-                    await storageFolder.CreateFileAsync("settings.json");
-                    storageFile = await storageFolder.GetFileAsync("settings.json");
-                }
                 var settingsJson = JsonConvert.SerializeObject(_settingsModel);
-                var inputStream = await storageFile.OpenAsync(FileAccessMode.ReadWrite);
-                var writeStream = inputStream.GetOutputStreamAt(0);
-                DataWriter writer = new DataWriter(writeStream);
-                writer.WriteString(settingsJson);
-                await writer.StoreAsync();
-                await writeStream.FlushAsync();
-                inputStream.Dispose();
-                writer.Dispose();
+                await FileIO.WriteLinesAsync(storageFile, settingsJson.Split('\n'));
                 ConfigurationContext.MainSettings = _settingsModel;
             }
             catch
