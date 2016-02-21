@@ -107,6 +107,7 @@
     <Compile Include="Converters\BooleanToVisibilityReverseConverter.cs" />
     <Compile Include="Converters\CountToBooleanConverter.cs" />
     <Compile Include="Converters\DarkAppThemeToBooleanConverter.cs" />
+    <Compile Include="Converters\DateTimeToTimeSpanConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Helpers\BaseApplication.cs" />
     <Compile Include="Helpers\BasePage.cs" />
