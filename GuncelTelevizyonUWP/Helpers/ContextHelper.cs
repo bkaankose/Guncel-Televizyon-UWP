@@ -28,11 +28,6 @@ namespace GuncelTelevizyonUWP.Helpers
             set { _channels = value; }
         }
 
-        //public static Task<bool> GetChannelFavoriteStatus(Guid channelId)
-        //{
-
-        //}
-
         #endregion
     }
 }

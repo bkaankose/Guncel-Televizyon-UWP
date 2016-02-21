@@ -32,8 +32,6 @@ namespace GuncelTelevizyonUWP.ViewModels
             set { _selectedChannel = value; OnPropertyChanged("SelectedChannel"); }
         }
 
-
-
         #endregion
 
         #region Commands
@@ -61,7 +59,6 @@ namespace GuncelTelevizyonUWP.ViewModels
                 param = (ChannelCategory)e.Parameter;
 
             CurrentChannels = await _channelRepository.GetChannels(param);
-
         }
 
         private void InitializeCommands()
@@ -85,6 +82,5 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             _navigationService.Navigate("Watch", SelectedChannel);
         }
-
     }
 }
