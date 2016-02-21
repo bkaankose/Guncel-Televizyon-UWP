@@ -47,7 +47,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             _channelRepository = channelRepository;
             InitializeCommands();
-            //SelectedCurrentStreams = new ObservableCollection<ChannelStreamInformation>();
+            
             CurrentStreams = new ObservableCollection<ChannelStreamInformation>();
         }
 
@@ -57,12 +57,9 @@ namespace GuncelTelevizyonUWP.ViewModels
 
             var parameter = e.Parameter;
             if (parameter == null) // List current streams
-                CurrentStreams = await _channelRepository.GetStreamInformations();
+                CurrentStreams = await OperateAsyncOperation(_channelRepository.GetStreamInformations(), "Yayın akışları yükleniyor");
             else if (parameter.GetType() == typeof(int)) // Navigated with the channelId , list streams of that channel.
-            {
-                var b = (await _channelRepository.GetStreamInformations()).FirstOrDefault(a => a.ChannelId == Guid.Parse(parameter.ToString()));
-                CurrentStreams.Add(b);
-            }
+                CurrentStreams.Add((await OperateAsyncOperation(_channelRepository.GetStreamInformations(), "Yayın akışları yükleniyor")).FirstOrDefault(a => a.ChannelId == Guid.Parse(parameter.ToString())));
         }
 
         private void InitializeCommands()

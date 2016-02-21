@@ -58,7 +58,7 @@ namespace GuncelTelevizyonUWP.ViewModels
             if(e.Parameter != null) // Navigated with channel category
                 param = (ChannelCategory)e.Parameter;
 
-            CurrentChannels = await _channelRepository.GetChannels(param);
+            CurrentChannels = await OperateAsyncOperation(_channelRepository.GetChannels(param), "Kanallar yükleniyor");
         }
 
         private void InitializeCommands()
