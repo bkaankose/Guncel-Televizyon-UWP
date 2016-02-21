@@ -27,7 +27,7 @@ namespace GuncelTelevizyonUWP.Helpers
         }
 
         /// <summary>
-        /// Helper property for page indicators.
+        /// Helper properties for page indicators.
         /// </summary>
         private bool _isBusy;
 
@@ -36,6 +36,15 @@ namespace GuncelTelevizyonUWP.Helpers
             get { return _isBusy; }
             set { _isBusy = value; OnPropertyChanged("IsBusy"); }
         }
+
+        private string _busyMessage;
+
+        public string BusyMessage
+        {
+            get { return _busyMessage; }
+            set { _busyMessage = value; OnPropertyChanged("BusyMessage"); }
+        }
+
 
         public ISettingsService settingsService;
         public INavigationService navigationService;
@@ -50,6 +59,17 @@ namespace GuncelTelevizyonUWP.Helpers
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
         }
 
+        public async Task<T> OperateAsyncOperation<T>(Task<T> operation,string busyMessage = "")
+        {
+            BusyMessage = busyMessage;
+            IsBusy = true;
+            await Task.Delay(2000); // UI Warmup
+            var result = await operation;
+            IsBusy = false;
+
+            return result;
+        }
+        
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
