@@ -22,12 +22,13 @@ namespace GuncelTelevizyonUWP.Repositories
         {
             var _ret = new ObservableCollection<ChannelModelView>();
             var mainChannels = await _channelService.GetChannels();
+            var streamInformations = await _channelService.GetStreamInformations();
             foreach (var channel in mainChannels)
             {
                 var model = new ChannelModelView(channel);
                 try
                 {
-                    var channelImageFile = await ConfigurationContext.LocalFolder.GetItemAsync(string.Format("Images\\{0}.png", model.Channel.Id.Trim()));
+                    var channelImageFile = await ConfigurationContext.LocalFolder.GetItemAsync(string.Format("Images\\{0}.png", model.Channel.Id));
                     if (channelImageFile != null)
                         model.HasChannelImage = true;
                     else
@@ -38,17 +39,41 @@ namespace GuncelTelevizyonUWP.Repositories
                     model.HasChannelImage = false;
                 }
 
+                model.CurrentStream = await GetExactCurrentStreamByChannel(model.Channel.Id);
+                if (ConfigurationContext.MainSettings.FavoritedChannelIds.Contains(model.Channel.Id))
+                    model.IsFavorited = true;
+                else
+                    model.IsFavorited = false;
 
-                // TODO : Set favorite
                 _ret.Add(model);
             }
 
             return _ret;
         }
 
-        public async Task<ObservableCollection<DummyChannelCurrentStreamInformation>> GetCurrentChannelInformation()
+        private async Task<StreamInformation> GetExactCurrentStreamByChannel(Guid channelId)
         {
-            return new ObservableCollection<DummyChannelCurrentStreamInformation>(await _channelService.GetCurrentChannelInformation());
+            var streamInformations = (await _channelService.GetStreamInformations()).FirstOrDefault(a => a.ChannelId == channelId);
+
+            if (streamInformations == null)
+                return null;
+
+            return streamInformations.DailyStreams.LastOrDefault(a => DateTime.Now > a.StartTime);
+        }
+
+        public async Task<ObservableCollection<ChannelStreamInformation>> GetStreamInformations()
+        {
+            return new ObservableCollection<ChannelStreamInformation>(await _channelService.GetStreamInformations());
+        }
+
+        public void FavoriteChannel(Guid channelId)
+        {
+            _channelService.FavoriteChannel(channelId);
+        }
+
+        public void UnfavoriteChannel(Guid channelId)
+        {
+            _channelService.UnfavoriteChannel(channelId);
         }
     }
 }

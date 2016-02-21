@@ -8,34 +8,56 @@ using GuncelTelevizyonUWP.Models;
 using System.Collections.ObjectModel;
 using Microsoft.WindowsAzure.MobileServices;
 using GuncelTelevizyonUWP.Helpers;
+using GuncelTelevizyonUWP.Context;
 
 namespace GuncelTelevizyonUWP.Services
 {
     public class ChannelService : IChannelService
     {
         private MobileServiceHelper _serviceHelper;
-        public ChannelService(MobileServiceHelper serviceHelper)
+        private ISettingsService _settingsService;
+        public ChannelService(MobileServiceHelper serviceHelper,ISettingsService settingsService)
         {
             _serviceHelper = serviceHelper;
+            _settingsService = settingsService;
         }
         public async Task<List<Channel>> GetChannels()
         {
-            return await _serviceHelper.GetTableData<Channel>();
+            if (ContextHelper.Channels == null)
+                ContextHelper.Channels = await _serviceHelper.GetTableData<Channel>();
+
+            return ContextHelper.Channels;
         }
 
-        public async Task<List<DummyChannelCurrentStreamInformation>> GetCurrentChannelInformation()
+        public async Task<List<ChannelStreamInformation>> GetStreamInformations()
         {
-            var nRet = new List<DummyChannelCurrentStreamInformation>();
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
-            nRet.Add(new DummyChannelCurrentStreamInformation() { ChannelName = "Kanal D", StreamName = "Var Mısın Yok Musun ?", ChannelImage = "https://upload.wikimedia.org/wikipedia/tr/thumb/c/ca/Kanal_D_logo.svg/522px-Kanal_D_logo.svg.png" });
+            if (ContextHelper.StreamInformations == null)
+                ContextHelper.StreamInformations = await _serviceHelper.GetCustomApiData<List<ChannelStreamInformation>>("Stream");
 
-
-            return nRet;
+            return ContextHelper.StreamInformations;
         }
+
+        public void FavoriteChannel(Guid channelId)
+        {
+            if(!ConfigurationContext.MainSettings.FavoritedChannelIds.Contains(channelId))
+            {
+                ConfigurationContext.MainSettings.FavoritedChannelIds.Add(channelId);
+                _settingsService.SaveSettingsAsync(ConfigurationContext.MainSettings);
+            }
+        }
+
+        public void UnfavoriteChannel(Guid channelId)
+        {
+            if (ConfigurationContext.MainSettings.FavoritedChannelIds.Contains(channelId))
+            {
+                ConfigurationContext.MainSettings.FavoritedChannelIds.Remove(channelId);
+                _settingsService.SaveSettingsAsync(ConfigurationContext.MainSettings);
+            }
+        }
+
+        //public Task<bool> IsFavorited(Guid channelId)
+        //{
+
+        //}
     }
 }
