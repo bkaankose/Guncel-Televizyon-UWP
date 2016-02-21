@@ -11,7 +11,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <helpers:BasePage.BottomAppBar>
+    <!--<helpers:BasePage.BottomAppBar>
         <CommandBar x:Name="commandBar" HorizontalContentAlignment="Stretch">
             <CommandBar.Content>
                 <Grid HorizontalAlignment="Stretch">
@@ -19,7 +19,7 @@
                 </Grid>
             </CommandBar.Content>
         </CommandBar>
-    </helpers:BasePage.BottomAppBar>
+    </helpers:BasePage.BottomAppBar>-->
 
     <helpers:BasePage.Resources>
         <DataTemplate x:Key="CurrentStreamTemplate">
@@ -29,6 +29,10 @@
                         <ColumnDefinition Width="50" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
                     <Image Source="{Binding ChannelImage}" Grid.Column="0" Stretch="UniformToFill" />
                     <Grid Grid.Column="1" VerticalAlignment="Center" Margin="12,0">
                         <Grid.RowDefinitions>
@@ -38,6 +42,20 @@
                         <TextBlock Text="{Binding CurrentStream.Name}"  FontWeight="SemiBold" />
                         <TextBlock Text="{Binding ChannelName}"  Grid.Row="1" Margin="0,2" />
                     </Grid>
+                    <Grid x:Name="streamDetails" Margin="20,8,0,0" Grid.Column="1" Grid.Row="1">
+                        <ItemsControl ItemsSource="{Binding DailyStreams}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="0,2" FontSize="16" FontFamily="Segoe UI Light" FontWeight="ExtraLight">
+                                        <Run Text="" FontFamily="Segoe MDL2 Assets" />
+                                        <Run Text="{Binding StartTime,Converter={StaticResource timeSpanConverter}}" />
+                                        <Run Text=" - " />
+                                        <Run Text="{Binding Name}" />
+                                    </TextBlock>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -45,10 +63,10 @@
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView ItemsSource="{Binding CurrentStreams}" 
-                  SelectionMode="Multiple" 
+                  SelectionMode="None"
                   ItemContainerStyle="{StaticResource HorizontalContentStretchStyle}" 
-                  ItemTemplate="{StaticResource CurrentStreamTemplate}" 
-                  ext:ListViewExtensions.BindableSelection="{Binding SelectedCurrentStreams,Mode=TwoWay}" IsMultiSelectCheckBoxEnabled="False" />
+                  ItemTemplate="{StaticResource CurrentStreamTemplate}"></ListView>
+                  <!--ext:ListViewExtensions.BindableSelection="{Binding SelectedCurrentStreams,Mode=TwoWay}" IsMultiSelectCheckBoxEnabled="False" />-->
     </Grid>
 
 </helpers:BasePage>

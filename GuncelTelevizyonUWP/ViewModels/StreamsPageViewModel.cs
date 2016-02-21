@@ -24,13 +24,13 @@ namespace GuncelTelevizyonUWP.ViewModels
             set { _currentStreams = value; OnPropertyChanged("CurrentStreams"); }
         }
 
-        private ObservableCollection<ChannelStreamInformation> _selectedCurrentStreams;
+        //private ObservableCollection<ChannelStreamInformation> _selectedCurrentStreams;
 
-        public ObservableCollection<ChannelStreamInformation> SelectedCurrentStreams
-        {
-            get { return _selectedCurrentStreams; }
-            set { _selectedCurrentStreams = value; OnPropertyChanged("SelectedCurrentStreams"); }
-        }
+        //public ObservableCollection<ChannelStreamInformation> SelectedCurrentStreams
+        //{
+        //    get { return _selectedCurrentStreams; }
+        //    set { _selectedCurrentStreams = value; OnPropertyChanged("SelectedCurrentStreams"); }
+        //}
 
 
         #endregion
@@ -47,7 +47,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             _channelRepository = channelRepository;
             InitializeCommands();
-            SelectedCurrentStreams = new ObservableCollection<ChannelStreamInformation>();
+            //SelectedCurrentStreams = new ObservableCollection<ChannelStreamInformation>();
             CurrentStreams = new ObservableCollection<ChannelStreamInformation>();
         }
 
@@ -67,14 +67,14 @@ namespace GuncelTelevizyonUWP.ViewModels
 
         private void InitializeCommands()
         {
-            SetAlarmCommand = new DelegateCommand(SetAlarm);
+            //SetAlarmCommand = new DelegateCommand(SetAlarm);
         }
-        private void SetAlarm()
-        {
-            if(SelectedCurrentStreams != null && SelectedCurrentStreams.Count > 0)
-            {
-                // TODO : Set an alarm for selected streams
-            }
-        }
+        //private void SetAlarm()
+        //{
+        //    if(SelectedCurrentStreams != null && SelectedCurrentStreams.Count > 0)
+        //    {
+        //        // TODO : Set an alarm for selected streams
+        //    }
+        //}
     }
 }
