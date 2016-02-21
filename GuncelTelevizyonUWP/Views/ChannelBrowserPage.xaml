@@ -1,4 +1,5 @@
 ﻿<helpers:BasePage
+    
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     prism:ViewModelLocator.AutoWireViewModel="True"
     xmlns:prism="using:Prism.Windows.Mvvm"
@@ -48,7 +49,12 @@
     </helpers:BasePage.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Kanal bulunamadı" Style="{StaticResource CollectionNotFoundStyle}" Visibility="{Binding CurrentChannels.Count,Converter={StaticResource countToVisibilityReverse}}" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" />
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsBusy,Converter={StaticResource boolToVisibility}}">
+            <TextBlock Style="{StaticResource CollectionNotFoundStyle}" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center">
+                <Run Text="{Binding BusyMessage}"  />
+            </TextBlock>
+            <ProgressRing IsActive="{Binding IsBusy}" Width="75" Height="75" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,8" />
+        </StackPanel>
         <ListView ItemsSource="{Binding CurrentChannels}" SelectedItem="{Binding SelectedChannel,Mode=TwoWay}" ItemTemplate="{StaticResource ChannelTemplate}" ItemContainerStyle="{StaticResource HorizontalContentStretchStyle}" />
     </Grid>
 </helpers:BasePage>
