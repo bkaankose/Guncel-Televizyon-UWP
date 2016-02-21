@@ -48,6 +48,7 @@
     </helpers:BasePage.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <TextBlock Text="Kanal bulunamadı" Style="{StaticResource CollectionNotFoundStyle}" Visibility="{Binding CurrentChannels.Count,Converter={StaticResource countToVisibilityReverse}}" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" />
         <ListView ItemsSource="{Binding CurrentChannels}" SelectedItem="{Binding SelectedChannel,Mode=TwoWay}" ItemTemplate="{StaticResource ChannelTemplate}" ItemContainerStyle="{StaticResource HorizontalContentStretchStyle}" />
     </Grid>
 </helpers:BasePage>

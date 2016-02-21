@@ -153,7 +153,7 @@
                     <Button Content="" Command="{Binding AnimatePaneCommand}" FontFamily="Segoe MDL2 Assets" Grid.Row="0" Background="{x:Null}" FontSize="22" Width="50" Style="{StaticResource OpenCloseButtonTemplate}" VerticalAlignment="Center" HorizontalAlignment="Left" />
                     <TextBlock Text="{Binding CurrentPageTitle}" Grid.ColumnSpan="2" Style="{StaticResource HeaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="23"/>
                 </Grid>
-                <helpers:SubPage x:Name="subView" PageParameter="{Binding SubPageParameter}" PageName="{Binding SubPageName}" Grid.Row="1" />
+                <helpers:SubPage x:Name="subView" Margin="36,0,0,0" PageParameter="{Binding SubPageParameter}" PageName="{Binding SubPageName}" Grid.Row="1" />
             </Grid>
         </SplitView.Content>
     </SplitView>
