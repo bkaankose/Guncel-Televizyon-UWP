@@ -18,13 +18,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Image Source="{Binding ChannelImage}" Width="50" Height="50" Stretch="UniformToFill" />
-                <Grid Grid.Column="1" VerticalAlignment="Center">
+                <Grid Grid.Column="1" VerticalAlignment="Center" Margin="12,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding CurrentStream}" FontWeight="SemiBold" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding CurrentStream.Name}" FontWeight="SemiBold" />
                     <TextBlock Text="{Binding Channel.Name}"  Grid.Row="1" />
+                    <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="Gold" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding IsFavorited,Converter={StaticResource boolToVisibility}}" Grid.Column="1" Grid.RowSpan="2"/>
                 </Grid>
             </Grid>
         </DataTemplate>
@@ -43,6 +48,6 @@
     </helpers:BasePage.BottomAppBar>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ListView ItemsSource="{Binding CurrentChannels}" SelectedItem="{Binding SelectedChannel,Mode=TwoWay}" ItemTemplate="{StaticResource ChannelTemplate}" />
+        <ListView ItemsSource="{Binding CurrentChannels}" SelectedItem="{Binding SelectedChannel,Mode=TwoWay}" ItemTemplate="{StaticResource ChannelTemplate}" ItemContainerStyle="{StaticResource HorizontalContentStretchStyle}" />
     </Grid>
 </helpers:BasePage>
