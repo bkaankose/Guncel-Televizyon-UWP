@@ -9,7 +9,7 @@ namespace GuncelTelevizyonUWP.Models
 {
     public class Channel
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
         [JsonProperty(PropertyName = "url")]

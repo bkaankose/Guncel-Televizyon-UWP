@@ -1,18 +1,31 @@
 ﻿using GuncelTelevizyonUWP.Context;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GuncelTelevizyonUWP.Models
 {
-    public class ChannelModelView
+    public class ChannelModelView : INotifyPropertyChanged
     {
+        public ChannelModelView(Channel _channel)
+        {
+            Channel = _channel;
+        }
+
         public Channel Channel { get; set; }
-        public bool IsFavorited { get; set; }
+        private bool _isFavorited;
+
+        public bool IsFavorited
+        {
+            get { return _isFavorited; }
+            set { _isFavorited = value; PropChanged("IsFavorited"); }
+        }
+
         public bool HasChannelImage { get; set; }
-        public string CurrentStream { get; set; }
+        public StreamInformation CurrentStream { get; set; }
         public string ChannelImage
         {
             get
@@ -23,9 +36,12 @@ namespace GuncelTelevizyonUWP.Models
                     return string.Format("noimage");
             }
         }
-        public ChannelModelView(Channel _channel)
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void PropChanged(string propName)
         {
-            Channel = _channel;
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(null, new PropertyChangedEventArgs(propName));
         }
     }
 }
