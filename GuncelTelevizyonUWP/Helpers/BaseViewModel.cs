@@ -37,18 +37,6 @@ namespace GuncelTelevizyonUWP.Helpers
             set { _isBusy = value; OnPropertyChanged("IsBusy"); }
         }
 
-
-        /// <summary>
-        /// Helper property for empty main collection.
-        /// </summary>
-        private bool _isMainCollectionEmpty;
-
-        public bool IsMainCollectionEmpty
-        {
-            get { return _isMainCollectionEmpty; }
-            set { _isMainCollectionEmpty = value; OnPropertyChanged("IsMainCollectionEmpty"); }
-        }
-
         public ISettingsService settingsService;
         public INavigationService navigationService;
         public BaseViewModel()
