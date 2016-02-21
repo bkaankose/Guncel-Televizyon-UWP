@@ -66,12 +66,14 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
         private void FavoriteChannel()
         {
-
+            _channelRepository.FavoriteChannel(SelectedChannel.Channel.Id);
+            SelectedChannel.IsFavorited = true;
         }
 
         private void UnFavoriteChannel()
         {
-
+            _channelRepository.UnfavoriteChannel(SelectedChannel.Channel.Id);
+            SelectedChannel.IsFavorited = false;
         }
         private void Watch()
         {

@@ -16,17 +16,17 @@ namespace GuncelTelevizyonUWP.ViewModels
     {
         #region Properties
 
-        private ObservableCollection<DummyChannelCurrentStreamInformation> _currentStreams;
+        private ObservableCollection<ChannelStreamInformation> _currentStreams;
 
-        public ObservableCollection<DummyChannelCurrentStreamInformation> CurrentStreams
+        public ObservableCollection<ChannelStreamInformation> CurrentStreams
         {
             get { return _currentStreams; }
             set { _currentStreams = value; OnPropertyChanged("CurrentStreams"); }
         }
 
-        private ObservableCollection<DummyChannelCurrentStreamInformation> _selectedCurrentStreams;
+        private ObservableCollection<ChannelStreamInformation> _selectedCurrentStreams;
 
-        public ObservableCollection<DummyChannelCurrentStreamInformation> SelectedCurrentStreams
+        public ObservableCollection<ChannelStreamInformation> SelectedCurrentStreams
         {
             get { return _selectedCurrentStreams; }
             set { _selectedCurrentStreams = value; OnPropertyChanged("SelectedCurrentStreams"); }
@@ -47,7 +47,8 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             _channelRepository = channelRepository;
             InitializeCommands();
-            SelectedCurrentStreams = new ObservableCollection<DummyChannelCurrentStreamInformation>();
+            SelectedCurrentStreams = new ObservableCollection<ChannelStreamInformation>();
+            CurrentStreams = new ObservableCollection<ChannelStreamInformation>();
         }
 
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
@@ -56,10 +57,11 @@ namespace GuncelTelevizyonUWP.ViewModels
 
             var parameter = e.Parameter;
             if (parameter == null) // List current streams
-                CurrentStreams = await _channelRepository.GetCurrentChannelInformation();
+                CurrentStreams = await _channelRepository.GetStreamInformations();
             else if (parameter.GetType() == typeof(int)) // Navigated with the channelId , list streams of that channel.
             {
-
+                var b = (await _channelRepository.GetStreamInformations()).FirstOrDefault(a => a.ChannelId == Guid.Parse(parameter.ToString()));
+                CurrentStreams.Add(b);
             }
         }
 

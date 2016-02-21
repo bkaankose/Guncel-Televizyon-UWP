@@ -61,7 +61,7 @@ namespace GuncelTelevizyonUWP.ViewModels
             foreach(var channel in channels)
             {
                 InformationText = string.Format("{0} yükleniyor", channel.Name);
-                await _synchronizationService.SynchronizeChannelImage(Guid.Parse(channel.Id));
+                await _synchronizationService.SynchronizeChannelImage(channel.Id);
             }
 
             navigationService.Navigate("Main", null);
