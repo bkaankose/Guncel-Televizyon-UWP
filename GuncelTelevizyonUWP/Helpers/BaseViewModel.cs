@@ -15,6 +15,9 @@ namespace GuncelTelevizyonUWP.Helpers
 {
     public class BaseViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Main settings for application
+        /// </summary>
         private Settings _currentSettings;
 
         public Settings CurrentSettings
@@ -23,6 +26,9 @@ namespace GuncelTelevizyonUWP.Helpers
             set { _currentSettings = value; OnPropertyChanged("CurrentSettings"); }
         }
 
+        /// <summary>
+        /// Helper property for page indicators.
+        /// </summary>
         private bool _isBusy;
 
         public bool IsBusy
@@ -31,12 +37,25 @@ namespace GuncelTelevizyonUWP.Helpers
             set { _isBusy = value; OnPropertyChanged("IsBusy"); }
         }
 
+
+        /// <summary>
+        /// Helper property for empty main collection.
+        /// </summary>
+        private bool _isMainCollectionEmpty;
+
+        public bool IsMainCollectionEmpty
+        {
+            get { return _isMainCollectionEmpty; }
+            set { _isMainCollectionEmpty = value; OnPropertyChanged("IsMainCollectionEmpty"); }
+        }
+
         public ISettingsService settingsService;
         public INavigationService navigationService;
         public BaseViewModel()
         {
             navigationService = ApplicationContext.Resolve<INavigationService>();
             settingsService = ApplicationContext.Resolve<ISettingsService>();
+
             if (navigationService.CanGoBack())
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             else
@@ -48,6 +67,5 @@ namespace GuncelTelevizyonUWP.Helpers
             base.OnNavigatedTo(e, viewModelState);
             CurrentSettings = await settingsService.GetSettingsAsync();
         }
-
     }
 }
