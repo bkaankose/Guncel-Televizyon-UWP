@@ -15,6 +15,7 @@
         <converters:NullToVisibilityConverter x:Key="nullToVisibility" />
         <converters:BooleanToVisibilityConverter x:Key="boolToVisibility" />
         <converters:BooleanToVisibilityReverseConverter x:Key="boolToVisibilityReverse" />
+        <converters:DateTimeToTimeSpanConverter x:Key="timeSpanConverter" />
 
         <!-- Styles -->
         <Style x:Key="HorizontalContentStretchStyle" TargetType="ListViewItem">
