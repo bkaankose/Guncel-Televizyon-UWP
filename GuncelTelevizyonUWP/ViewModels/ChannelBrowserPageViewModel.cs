@@ -55,7 +55,13 @@ namespace GuncelTelevizyonUWP.ViewModels
         public override async void OnNavigatedTo(NavigatedToEventArgs e, Dictionary<string, object> viewModelState)
         {
             base.OnNavigatedTo(e, viewModelState);
-            CurrentChannels = await _channelRepository.GetChannels();
+            ChannelCategory param = ChannelCategory.Hepsi;
+
+            if(e.Parameter != null) // Navigated with channel category
+                param = (ChannelCategory)e.Parameter;
+
+            CurrentChannels = await _channelRepository.GetChannels(param);
+
         }
 
         private void InitializeCommands()

@@ -13,6 +13,6 @@ namespace GuncelTelevizyonUWP.Interfaces
         void FavoriteChannel(Guid channelId);
         void UnfavoriteChannel(Guid channelId);
         Task<ObservableCollection<ChannelStreamInformation>> GetStreamInformations();
-        Task<ObservableCollection<ChannelModelView>> GetChannels();
+        Task<ObservableCollection<ChannelModelView>> GetChannels(ChannelCategory category = ChannelCategory.Hepsi);
     }
 }

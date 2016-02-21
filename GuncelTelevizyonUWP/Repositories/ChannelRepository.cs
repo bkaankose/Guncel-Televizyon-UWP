@@ -18,10 +18,14 @@ namespace GuncelTelevizyonUWP.Repositories
             _channelService = channelService;
         }
 
-        public async Task<ObservableCollection<ChannelModelView>> GetChannels()
+
+        public async Task<ObservableCollection<ChannelModelView>> GetChannels(ChannelCategory category = ChannelCategory.Hepsi)
         {
             var _ret = new ObservableCollection<ChannelModelView>();
             var mainChannels = await _channelService.GetChannels();
+            if (category != ChannelCategory.Hepsi)
+                mainChannels = mainChannels.Where(a => a.Category == category).ToList();
+
             var streamInformations = await _channelService.GetStreamInformations();
             foreach (var channel in mainChannels)
             {

@@ -8,11 +8,15 @@ namespace GuncelTelevizyonUWP.Models
 {
     public enum ChannelCategory
     {
-        All,
+        Hepsi,
         Ulusal,
         Haber,
-        Muzik,
+        Spor,
+        Eglence,
         Belgesel,
+        Sinema,
+        Muzik,
+        Moda,
         Cocuk
     }
 }
