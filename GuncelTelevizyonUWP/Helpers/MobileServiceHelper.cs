@@ -1,5 +1,7 @@
 ﻿using GuncelTelevizyonUWP.Models;
 using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +21,51 @@ namespace GuncelTelevizyonUWP.Helpers
 
         internal async Task<T> GetCustomApiData<T>(string apiEndpoint)
         {
-            return await _client.InvokeApiAsync<T>(apiEndpoint,HttpMethod.Get,null);
+            try
+            {
+                return await _client.InvokeApiAsync<T>(apiEndpoint, HttpMethod.Get, null);
+            }
+            catch (Exception)
+            {
+                return default(T);
+            }
         }
 
         internal async Task<List<T>> GetTableData<T>()
         {
             var _ret = new List<T>();
             var table = _client.GetTable<T>();
-            var collection = await table.ReadAsync();
+            try
+            {
+                var collection = await table.ReadAsync();
 
-            foreach (var item in collection)
-                _ret.Add(item);
+                foreach (var item in collection)
+                    _ret.Add(item);
 
-            return _ret;
+                return _ret;
+            }
+            catch (Exception)
+            {
+                return default(List<T>);
+            }
+        }
+        internal async Task<bool> PostTableData<T>(T data)
+        {
+            var splittedAssembly = data.GetType().ToString().Split('.');
+            var tableName = splittedAssembly[splittedAssembly.Length - 1];
+            var table = _client.GetTable(tableName);
+            try
+            {
+                var jToken = await table.InsertAsync(JObject.Parse(JsonConvert.SerializeObject(data)));
+                if (jToken == null)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
