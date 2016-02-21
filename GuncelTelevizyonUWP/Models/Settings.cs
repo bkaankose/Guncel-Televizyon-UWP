@@ -8,7 +8,7 @@ namespace GuncelTelevizyonUWP.Models
 {
     public class Settings
     {
-        public List<int> FavoritedChannelIds { get; set; }
+        public List<Guid> FavoritedChannelIds { get; set; }
         public AppTheme Theme { get; set; }
     }
 }

@@ -28,6 +28,19 @@ namespace GuncelTelevizyonUWP.Context
                     SettingsChanged.Invoke(_mainSettings, null);
             }
         }
+
+        //private static List<Channel> _favoritedChannels;
+
+        //public static List<Channel> FavoritedChannels
+        //{
+        //    get
+        //    {
+                
+        //        return _favoritedChannels;
+        //    }
+        //    set { _favoritedChannels = value; }
+        //}
+
         public static event EventHandler SettingsChanged;
     }
 }
