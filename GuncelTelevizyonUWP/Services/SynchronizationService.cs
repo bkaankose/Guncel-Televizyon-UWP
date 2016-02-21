@@ -30,7 +30,7 @@ namespace GuncelTelevizyonUWP.Services
                 try
                 {
                     IStorageFile downloadedImage = await ConfigurationContext.LocalFolder.CreateFileAsync(string.Format("Images\\{0}.png", channelId));
-                    var operation = _downloader.CreateDownload(new Uri(string.Format("{0}{1}.png", ConfigurationContext.ChannelImageStorageURL, channelId), UriKind.Absolute), downloadedImage);
+                    var operation = _downloader.CreateDownload(new Uri(string.Format("{0}{1}.png", ConfigurationContext.ChannelImageStorageURL, channelId.ToString().ToUpper()), UriKind.Absolute), downloadedImage);
                     Progress<DownloadOperation> progress = new Progress<DownloadOperation>(progressChanged);
                     await operation.StartAsync().AsTask(new CancellationToken(), progress);
                 }
