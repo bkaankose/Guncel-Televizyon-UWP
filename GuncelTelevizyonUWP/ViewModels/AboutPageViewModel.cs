@@ -39,6 +39,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         #region Services
 
         IFeedbackService _feedbackService;
+        IDialogService _dialogService;
         #endregion
 
         #region Commands
@@ -47,9 +48,12 @@ namespace GuncelTelevizyonUWP.ViewModels
         
         #endregion
 
-        public AboutPageViewModel(IFeedbackService feedbackService)
+        public AboutPageViewModel(IFeedbackService feedbackService,IDialogService dialogService)
         {
             _feedbackService = feedbackService;
+            _dialogService = dialogService;
+
+            CurrentFeedback = new Feedback(); // Initialize empty feedback
             InitializeCommands();
         }
 
@@ -60,16 +64,21 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
         private async void SendFeedback()
         {
-            if(string.IsNullOrEmpty(CurrentFeedback.FirstName) ||string.IsNullOrEmpty(CurrentFeedback.LastName) || string.IsNullOrEmpty(CurrentFeedback.EMail) || string.IsNullOrEmpty(CurrentFeedback.Message))
+            if(string.IsNullOrEmpty(CurrentFeedback.FirstName) ||string.IsNullOrEmpty(CurrentFeedback.LastName) || string.IsNullOrEmpty(CurrentFeedback.EMail) || string.IsNullOrEmpty(CurrentFeedback.Body))
             {
-                await new MessageDialog("Geribildirim gönderebilmek için formdaki bilgilerin hepsini doldurmak zorundasınız.").ShowAsync();
+                await _dialogService.ShowMessageAsync("Geribildirim gönderebilmek için formdaki bilgilerin hepsini doldurmak zorundasınız.");
                 return;
             }
 
             IsBusy = true;
 
             var feedbackResult = await _feedbackService.SendFeedbackAsync(CurrentFeedback);
-            //if(feedbackResult) // Success
+            if(feedbackResult) // Success
+                await _dialogService.ShowMessageAsync("Mesajınız başarıyla iletilmiştir, teşekkür ederim :)", "Başarılı");
+            else
+                await _dialogService.ShowMessageAsync("Mesajınız gönderilemedi, lütfen daha sonra tekrar deneyin.", "Hata :/");
+
+            CurrentFeedback = new Feedback();
             IsBusy = false;
         }
         private async void NavigateToUrl(object o)

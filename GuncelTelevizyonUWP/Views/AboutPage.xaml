@@ -59,14 +59,14 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <TextBlock Text="Ad" />
-                    <TextBox Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,2,5,0" />
+                    <TextBox Grid.Row="1" Text="{Binding CurrentFeedback.FirstName,Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,2,5,0" />
                     <TextBlock Text="Soyad" Grid.Row="2" />
-                    <TextBox Grid.Row="3" HorizontalAlignment="Stretch" Margin="0,2,5,0" />
+                    <TextBox Grid.Row="3" Text="{Binding CurrentFeedback.LastName,Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,2,5,0" />
                     <TextBlock Text="E-Posta" Grid.Row="4" />
-                    <TextBox Grid.Row="5" HorizontalAlignment="Stretch" Margin="0,2,5,0" MaxHeight="200" VerticalAlignment="Stretch" />
+                    <TextBox Grid.Row="5" Text="{Binding CurrentFeedback.EMail,Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,2,5,0" MaxHeight="200" VerticalAlignment="Stretch" />
                     <TextBlock Text="Mesaj" Grid.Row="6" />
-                    <TextBox Grid.Row="7" AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="0,2,5,0" Height="200" VerticalAlignment="Stretch" />
-                    <Button Grid.Row="8" HorizontalAlignment="Stretch" Margin="0,2,5,0">
+                    <TextBox Grid.Row="7" Text="{Binding CurrentFeedback.Body,Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="0,2,5,0" Height="200" VerticalAlignment="Stretch" />
+                    <Button Grid.Row="8" Command="{Binding SendFeedbackCommand}" HorizontalAlignment="Stretch" Margin="0,2,5,0">
                         <TextBlock>
                         <Run Text="" FontFamily="Segoe MDL2 Assets"  />
                         <Run Text="Gönder" />

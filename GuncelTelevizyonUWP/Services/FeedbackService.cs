@@ -1,4 +1,5 @@
-﻿using GuncelTelevizyonUWP.Interfaces;
+﻿using GuncelTelevizyonUWP.Helpers;
+using GuncelTelevizyonUWP.Interfaces;
 using GuncelTelevizyonUWP.Models;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,14 @@ namespace GuncelTelevizyonUWP.Services
 {
     public class FeedbackService : IFeedbackService
     {
+        MobileServiceHelper _mobileServiceHelper;
+        public FeedbackService(MobileServiceHelper mobileServiceHelper)
+        {
+            _mobileServiceHelper = mobileServiceHelper;
+        }
         public async Task<bool> SendFeedbackAsync(Feedback model)
         {
-            // TODO : Send feedback
-            await Task.Delay(3000);
-            return true;
+            return await _mobileServiceHelper.PostTableData(model);
         }
     }
 }
