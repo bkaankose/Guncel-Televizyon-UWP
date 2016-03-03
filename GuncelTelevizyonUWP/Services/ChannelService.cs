@@ -37,6 +37,11 @@ namespace GuncelTelevizyonUWP.Services
             return ContextHelper.StreamInformations;
         }
 
+        public async Task<string> GetSpecialChannelUrl(Guid channelId)
+        {
+            
+        }
+
         public void FavoriteChannel(Guid channelId)
         {
             if(!ConfigurationContext.MainSettings.FavoritedChannelIds.Contains(channelId))
@@ -55,9 +60,5 @@ namespace GuncelTelevizyonUWP.Services
             }
         }
 
-        //public Task<bool> IsFavorited(Guid channelId)
-        //{
-
-        //}
     }
 }
