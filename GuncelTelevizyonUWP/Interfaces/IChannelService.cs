@@ -10,9 +10,12 @@ namespace GuncelTelevizyonUWP.Interfaces
 {
     public interface IChannelService
     {
+
         Task<List<ChannelStreamInformation>> GetStreamInformations();
         Task<List<Channel>> GetChannels();
+        Task<string> GetSpecialChannelUrl(Guid channelId);
         void FavoriteChannel(Guid channelId);
         void UnfavoriteChannel(Guid channelId);
+        
     }
 }
