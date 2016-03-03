@@ -17,6 +17,7 @@
         <converters:BooleanToVisibilityReverseConverter x:Key="boolToVisibilityReverse" />
         <converters:DateTimeToTimeSpanConverter x:Key="timeSpanConverter" />
         <converters:CountToVisibilityReverseConverter x:Key="countToVisibilityReverse" />
+        <converters:BitrateConverter x:Key="bitrateConverter" />
 
         <!-- Styles -->
         <Style x:Key="HorizontalContentStretchStyle" TargetType="ListViewItem">
@@ -43,7 +44,32 @@
             <Setter Property="FontSize" Value="26" />
             <Setter Property="FontFamily" Value="Segoe UI Light" />
             <Setter Property="FontWeight" Value="ExtraLight" />
+            <Setter Property="Foreground" Value="Gray" />
         </Style>
+
+        <!-- Data Templates-->
+        <DataTemplate x:Key="ChannelTemplate">
+            <Grid Margin="0,6">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding ChannelImage}" Width="50" Height="50" Stretch="UniformToFill" />
+                <Grid Grid.Column="1" VerticalAlignment="Center" Margin="12,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding CurrentStream.Name}" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Channel.Name}"  Grid.Row="1" />
+                    <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="24" Foreground="Gold" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding IsFavorited,Converter={StaticResource boolToVisibility}}" Grid.Column="1" Grid.RowSpan="2"/>
+                </Grid>
+            </Grid>
+        </DataTemplate>
     </helpers:BaseApplication.Resources>
     
 </helpers:BaseApplication>
