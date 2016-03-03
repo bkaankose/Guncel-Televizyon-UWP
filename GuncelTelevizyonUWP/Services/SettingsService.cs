@@ -11,12 +11,25 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Windows.Storage.Streams;
 using GuncelTelevizyonUWP.Context;
+using System.Collections.ObjectModel;
 
 namespace GuncelTelevizyonUWP.Services
 {
     public class SettingsService : ISettingsService
     {
-        private StorageFolder storageFolder = ConfigurationContext.LocalFolder; 
+        private StorageFolder storageFolder = ConfigurationContext.LocalFolder;
+
+        public ObservableCollection<QualityEnumModel> GetQualities()
+        {
+            var nret = new ObservableCollection<QualityEnumModel>();
+            var qualities = Enum.GetValues(typeof(QualityEnumModel));
+            foreach (var q in qualities)
+                nret.Add((QualityEnumModel)q);
+
+            return nret;
+            
+        }
+
         public async Task<Settings> GetSettingsAsync()
         {
             if (ConfigurationContext.MainSettings != null)
@@ -28,7 +41,7 @@ namespace GuncelTelevizyonUWP.Services
                 ConfigurationContext.MainSettings = JsonConvert.DeserializeObject<Settings>((JObject.Parse(await FileIO.ReadTextAsync(settingsJson)).ToString()));
             }
             else
-               ConfigurationContext.MainSettings = new Settings() { Theme = AppTheme.Dark, FavoritedChannelIds = new List<Guid>() };
+               ConfigurationContext.MainSettings = new Settings() { Theme = AppTheme.Dark, FavoritedChannelIds = new List<Guid>() , PreferedQuality = QualityEnumModel.Orta };
 
 
             return ConfigurationContext.MainSettings;
