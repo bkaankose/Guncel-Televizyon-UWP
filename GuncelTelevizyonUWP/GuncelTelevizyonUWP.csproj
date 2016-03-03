@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="Context\ApplicationContext.cs" />
     <Compile Include="Context\ConfigurationContext.cs" />
+    <Compile Include="Converters\BitrateConverter.cs" />
     <Compile Include="Converters\BooleanToReverseConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityReverseConverter.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Helpers\BaseApplication.cs" />
     <Compile Include="Helpers\BasePage.cs" />
     <Compile Include="Helpers\BaseViewModel.cs" />
+    <Compile Include="Helpers\ChildTemplateControlHelper.cs" />
     <Compile Include="Helpers\ContextHelper.cs" />
     <Compile Include="Helpers\MobileServiceHelper.cs" />
     <Compile Include="Helpers\ReflectionHelper.cs" />
@@ -123,11 +125,13 @@
     <Compile Include="Interfaces\ISettingsService.cs" />
     <Compile Include="Interfaces\ISynchronizationService.cs" />
     <Compile Include="Models\AppTheme.cs" />
+    <Compile Include="Models\BitrateModelView.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\ChannelCategory.cs" />
     <Compile Include="Models\ChannelStreamInformation.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\HamburgerMenuItemType.cs" />
+    <Compile Include="Models\QualityEnumModel.cs" />
     <Compile Include="Models\StreamInformation.cs" />
     <Compile Include="Selectors\HamburgerMenuItemSelector.cs" />
     <Compile Include="Services\ChannelService.cs" />
