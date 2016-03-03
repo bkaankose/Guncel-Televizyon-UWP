@@ -63,7 +63,7 @@ namespace GuncelTelevizyonUWP.Helpers
         {
             BusyMessage = busyMessage;
             IsBusy = true;
-            await Task.Delay(2000); // UI Warmup
+            await Task.Delay(100); // UI Warmup
             var result = await operation;
             IsBusy = false;
 
