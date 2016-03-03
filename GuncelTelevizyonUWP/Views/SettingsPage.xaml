@@ -13,26 +13,12 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Margin="24">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
             <StackPanel Grid.Row="1">
                 <TextBlock Text="Koyu Tema" Style="{StaticResource SubheaderTextBlockStyle}" />
-                <!--<ToggleSwitch IsOn="{Binding CurrentSettings.Theme,Converter={StaticResource darkThemeToBoolean},Mode=TwoWay}"/>-->
                 <ToggleSwitch IsOn="{Binding IsDarkTheme,Mode=TwoWay}"/>
+                <TextBlock Text="Varsayılan İzleme Kalitesi" Style="{StaticResource SubheaderTextBlockStyle}" />
+                <ComboBox ItemsSource="{Binding AllQualities}" SelectedItem="{Binding SelectedQuality,Mode=TwoWay}" Margin="0,4" />
             </StackPanel>
-            <!--<Grid Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch">
-                <Button HorizontalAlignment="Right" Command="{Binding SaveSettingsCommand}">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" />
-                            <TextBlock Text=" Kaydet" FontFamily="Segoe UI Light" />
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-            </Grid>-->
         </Grid>
     </Grid>
 </helpers:BasePage>

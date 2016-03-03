@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Prism.Windows.Navigation;
 using GuncelTelevizyonUWP.Context;
 using Prism.Commands;
+using System.Collections.ObjectModel;
+using GuncelTelevizyonUWP.Models;
+using GuncelTelevizyonUWP.Interfaces;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
@@ -21,6 +24,25 @@ namespace GuncelTelevizyonUWP.ViewModels
             get { return _isDarkTheme; }
             set { _isDarkTheme = value; OnPropertyChanged("IsDarkTheme"); }
         }
+
+
+
+        private ObservableCollection<QualityEnumModel> _allQualities;
+
+        public ObservableCollection<QualityEnumModel> AllQualities
+        {
+            get { return _allQualities; }
+            set { _allQualities = value; OnPropertyChanged("AllQualities"); }
+        }
+
+        private QualityEnumModel _selectedQuality;
+
+        public QualityEnumModel SelectedQuality
+        {
+            get { return _selectedQuality; }
+            set { _selectedQuality = value; OnPropertyChanged("SelectedQuality"); }
+        }
+
 
         #endregion
 
@@ -48,17 +70,19 @@ namespace GuncelTelevizyonUWP.ViewModels
         {
             base.OnNavigatedTo(e, viewModelState);
             IsDarkTheme = CurrentSettings.Theme == Models.AppTheme.Dark ? true : false;
-
+            AllQualities = settingsService.GetQualities();
+            SelectedQuality = AllQualities.FirstOrDefault(a => a == CurrentSettings.PreferedQuality);
             this.PropertyChanged += SettingsPageViewModel_PropertyChanged;
         }
 
         private void SettingsPageViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == nameof(IsDarkTheme))
-            {
+            if (e.PropertyName == nameof(IsDarkTheme))
                 CurrentSettings.Theme = IsDarkTheme ? Models.AppTheme.Dark : Models.AppTheme.Light;
-                SaveSettings();
-            }
+            else if (e.PropertyName == nameof(SelectedQuality))
+                CurrentSettings.PreferedQuality = SelectedQuality;
+
+            SaveSettings();
         }
     }
 }
