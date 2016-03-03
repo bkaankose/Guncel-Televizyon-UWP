@@ -9,6 +9,7 @@ using Prism.Windows.Navigation;
 using System.Collections.ObjectModel;
 using GuncelTelevizyonUWP.Models;
 using Prism.Commands;
+using Newtonsoft.Json;
 
 namespace GuncelTelevizyonUWP.ViewModels
 {
@@ -80,7 +81,7 @@ namespace GuncelTelevizyonUWP.ViewModels
         }
         private void Watch()
         {
-            _navigationService.Navigate("Watch", SelectedChannel);
+            _navigationService.Navigate("Watch", JsonConvert.SerializeObject(SelectedChannel));
         }
     }
 }
