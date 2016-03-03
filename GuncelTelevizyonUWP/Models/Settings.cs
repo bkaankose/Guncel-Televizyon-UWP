@@ -10,5 +10,6 @@ namespace GuncelTelevizyonUWP.Models
     {
         public List<Guid> FavoritedChannelIds { get; set; }
         public AppTheme Theme { get; set; }
+        public QualityEnumModel PreferedQuality { get; set; }
     }
 }
